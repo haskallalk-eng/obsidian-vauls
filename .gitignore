@@ -1,0 +1,38 @@
+# ── Obsidian ──────────────────────────────────────────────────────
+# Workspace state changes on every UI interaction (open files, pane positions,
+# pinned tabs, sidebar widths). Versioning it = thousands of meaningless diffs.
+.obsidian/workspace*.json
+.obsidian/workspaces.json
+# Local cache, not portable across machines
+.obsidian/cache/
+.obsidian/plugins/*/data.json
+# Per-machine plugin enable/disable state — keep .obsidian/plugins/<plugin>/manifest.json
+# but ignore the local install state of each
+.obsidian/community-plugins.json.backup
+# Soft-deleted notes (Obsidian's recycle bin) — committing these would re-resurrect
+# things you intentionally trashed
+.trash/
+
+# ── OS junk ───────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+ehthumbs_vista.db
+
+# ── Editor leftovers ──────────────────────────────────────────────
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# ── Backups + temp files ──────────────────────────────────────────
+*.bak
+*.tmp
+*.~tmp
+~$*
+
+# ── Obsidian-Git plugin metadata ──────────────────────────────────
+# (the plugin itself stays installed; just don't track its lockfile/state)
+.obsidian/plugins/obsidian-git/data.json

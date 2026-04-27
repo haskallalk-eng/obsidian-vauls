@@ -1,0 +1,22 @@
+{
+	"nodes":[
+		{"id":"grp-mindrails","type":"group","x":-60,"y":-60,"width":1720,"height":780,"label":"Mindrails Produkte","color":"2"},
+		{"id":"mindrails-card","type":"text","x":640,"y":0,"width":420,"height":200,"color":"2","text":"# 🏢 Mindrails\n\nDachfirma. Einzige Klammer zwischen den Produkten — der Vault hält sie als getrennte Trees.\n\n[[Mindrails/Overview|Zur Hub-Notiz]]"},
+		{"id":"phonbot-card","type":"text","x":0,"y":0,"width":420,"height":200,"color":"2","text":"# 📞 Phonbot\n\nVoice Agent SaaS\n\n**Stack**: Fastify + React + Retell + Supabase\n**Code-Tasks**: GitHub Issues (haskallalk-eng/voice-agent-phonbot)\n\n[[Phonbot/Overview|Zur Notiz]]"},
+		{"id":"socibot-card","type":"text","x":1280,"y":0,"width":420,"height":200,"color":"5","text":"# 🤖 Socibot\n\nSocial Media Bot\n\n**Engine**: Video Engine v4.0\n**Status**: ⏳ Test-Run ausstehend\n\n[[Socibot/Overview|Zur Notiz]]"},
+		{"id":"kanzleibot-card","type":"text","x":1280,"y":240,"width":420,"height":200,"color":"4","text":"# ⚖️ Kanzleibot\n\nRechtsanwalts-SaaS (DE-Kanzleien)\n\n**Compliance**: BRAO §43a + DSGVO Art. 9\n**Region**: EU-only\n**Status**: 🏗️ Frühphase\n\n[[Kanzleibot/Overview|Zur Notiz]]"},
+		{"id":"phonbot-file","type":"file","x":0,"y":240,"width":420,"height":200,"file":"Phonbot/Overview.md"},
+		{"id":"socibot-file","type":"file","x":1280,"y":480,"width":420,"height":200,"file":"Socibot/Overview.md"},
+		{"id":"mindrails-file","type":"file","x":640,"y":240,"width":420,"height":200,"file":"Mindrails/Overview.md"},
+		{"id":"clients-card","type":"text","x":0,"y":480,"width":420,"height":200,"color":"4","text":"# 👥 Clients\n\nTemplate ready → dupliziere pro Kunde\n\n[[Clients/_Template|Template öffnen]]"},
+		{"id":"ideas-card","type":"text","x":640,"y":480,"width":420,"height":200,"color":"6","text":"# 💡 Ideas Pool\n\nHalbgare Ideen landen hier.\n\n[[Ideas/Chipy Voice-Varianten|Chipy Voice-Varianten]]"}
+	],
+	"edges":[
+		{"id":"edge-mp","fromNode":"mindrails-card","fromSide":"left","toNode":"phonbot-card","toSide":"right","toEnd":"arrow","label":"Produkt"},
+		{"id":"edge-ms","fromNode":"mindrails-card","fromSide":"right","toNode":"socibot-card","toSide":"left","toEnd":"arrow","label":"Produkt"},
+		{"id":"edge-mk","fromNode":"mindrails-card","fromSide":"right","toNode":"kanzleibot-card","toSide":"left","toEnd":"arrow","label":"Produkt"},
+		{"id":"edge-mfile","fromNode":"mindrails-card","fromSide":"bottom","toNode":"mindrails-file","toSide":"top","toEnd":"arrow"},
+		{"id":"edge-pfile","fromNode":"phonbot-card","fromSide":"bottom","toNode":"phonbot-file","toSide":"top","toEnd":"arrow"},
+		{"id":"edge-sfile","fromNode":"socibot-card","fromSide":"bottom","toNode":"socibot-file","toSide":"top","toEnd":"arrow"}
+	]
+}
