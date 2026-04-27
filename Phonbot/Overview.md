@@ -2,7 +2,9 @@
 tags:
   - project
   - phonbot
+  - mindrails
 status: active
+parent: "[[Mindrails/Overview|Mindrails]]"
 created: 2026-04-18
 code_path: ~/.openclaw/workspace/voice-agent-saas
 stack:
