@@ -1,4 +1,4 @@
-﻿---
+---
 module: Backend-Outbound-Demo-Only
 scope: "Outbound product decision and live config"
 related:
