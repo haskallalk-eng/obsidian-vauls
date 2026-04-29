@@ -40,13 +40,26 @@ related:
 ## 2 — Quality-DoD (per Feature)
 
 - [ ] Acceptance-Criteria aus Kanban-Card erfüllt (jede Checkbox)
-- [ ] Code-Review durchgelaufen (Self-Review oder Subagent)
+- [ ] Code-Review durchgelaufen — bei Sonnet-Implementern **Pflicht-Reviewer** (Opus oder dezidierter `code-reviewer`-Prompt)
 - [ ] **security-dsgvo-reviewer**-Agent gelaufen wenn user-facing oder personenbezogene Daten
+- [ ] **Passende Skills aktiv genutzt** (z.B. `socibot-design` bei UI, `claude-api` bei Anthropic-SDK-Code, `webapp-testing` bei UI-Tests, `design-review` bei visuellen Änderungen)
+- [ ] **Eval gegen Gold-Set** (W0.5) bei AI-Pipeline-Änderungen — Score-Drift ≤ -5% gegenüber Baseline
 - [ ] Manueller End-to-End-Smoke-Test (Composer → Post → Result), ODER dokumentiert warum nicht
 - [ ] Doku in Obsidian: Module-Note (`Socibot/modules/...`) ODER Kanban-Card aktualisiert
 - [ ] Daily-Note + Produkt-Narrative-Eintrag (Wikilink-Verlinkung)
 - [ ] Commit gepusht (kein lokaler "fertig"-Stand mit 60+ uncommitted Files)
 - [ ] requirements.txt installierbar in frischer venv (`pip install -r requirements.txt`)
+
+## 2.5 — Eval-DoD (für AI-Pipeline-Änderungen, Codex-Critical-1)
+
+Jede Änderung an Generation/Critique/Risk-Pipeline muss messbar sein bevor sie Production-Ready ist.
+
+- [ ] **Gold-Set existiert**: 50 Test-Topics × 5 Personas (Anwalt/Arzt/Heilpraktiker/Coach/Steuerberater) × 5 Plattformen
+- [ ] **Quality-Rubric** mit 5 Dimensionen (Brand-Voice / Audience-Fit / Specificity / Engagement-Hook / Platform-Fit) — gewichtet, persistiert in `data/critique_rubric.json`
+- [ ] **Logging-Pipeline** für jeden Generation-Call: Prompt + Output + User-Feedback + Tier + Cost + Latency in `data/generation_log.jsonl`
+- [ ] **Cost-Budget-Tracker** pro Tier: warnt wenn Tier-Cost-Estimate ±30% vom realen Wert abweicht
+- [ ] **Baseline-Run** vor jedem Pipeline-Change: Score-Snapshot über Gold-Set
+- [ ] **Regression-Block**: Pipeline-Change wird verworfen wenn Score-Drift > -5% in mind. einer Persona
 
 ## 3 — Customer-DoD (pre-Pricing-Launch)
 
@@ -58,11 +71,14 @@ Was ein zahlender Kunde **ohne Operator-Eingriff** können muss:
 - [x] DSGVO Account-Delete (Art. 17) — *Phase 1.1 ✓*
 - [ ] Datenschutzerklärung + Impressum erreichbar — *uncommitted: `public/datenschutz.html`, `public/impressum.html`*
 
-### 3.2 Plattform-Anbindung (ohne API-Key-Eingabe)
+### 3.2 Plattform-Anbindung — **HARD-STOP: Kunde braucht NIE API-Keys/Tokens**
 - [x] Instagram + Facebook via OAuth-Klick — *Phase 1.1 ✓*
-- [ ] LinkedIn via OAuth-Klick — *aktuell: Token-Eingabe-Form*
-- [ ] Twitter/X via OAuth-Klick — *aktuell: Token-Eingabe-Form*
-- [ ] TikTok-Posting funktional — *aktuell: Stub in `_post_tiktok()`*
+- [ ] LinkedIn via OAuth-Klick — *aktuell: Token-Eingabe-Form (muss weg)*
+- [ ] Twitter/X via OAuth-Klick — *aktuell: Token-Eingabe-Form (muss weg)*
+- [ ] TikTok-Posting via Buffer-API-Bridge ODER OAuth — *aktuell: Stub*
+- [ ] **`CLAUDE_API_KEY` bleibt zentral im Operator-`.env`** — Kunde sieht es NIE (Kosten via Plan)
+- [ ] **Token-Input-Forms in `marke.html` und `setup.html` komplett entfernt** — durch OAuth-Status-Badges + "Coming Soon"-Cards ersetzt
+- [ ] **`/einstellungen/token-speichern`-Route entfernt** oder Operator-only mit Auth-Gate
 
 ### 3.3 Content-Generierung
 - [x] AI generiert Posts aus Brand-Knowledge (Claude)
@@ -157,14 +173,23 @@ Was vor dem **ersten echten Kunden** erfüllt sein muss:
 
 ---
 
-## Phasen-Roadmap
+## Phasen-Roadmap (Codex-revidiert 2026-04-29)
 
 | Phase | Inhalt | Status | Kanban |
 |---|---|---|---|
 | **1.1** | Meta OAuth ohne API-Key-Eingabe | ✅ funktional fertig (vorbehaltlich Smoke-Test-Operator-Run) | [[Socibot/kanban/02-meta-oauth-phase-1-1]] |
+| **W0** | Phase-1.1-Close: Commits, requirements, Smoke-Test-Vorbereitung | offen | — |
+| **W0.5** | Eval/Telemetry-Foundation (Gold-Set + Rubrik + Logging + Cost-Tracker) | offen, **Codex-Critical** | — |
+| **W1** | Quality-Floor (immer aktiv): Originality + Risk-Check Hybrid (Regex+Claude) + Anti-Slop **+ API-Key-Frei-Sweep** | offen | [[Socibot/kanban/06-quality-originality]], [[Socibot/kanban/08-quality-risk-check]] |
+| **W2** | Tier-Backend SCHLANK: Tier-Router + Cost-Estimator (immer), Hook-Split (Premium+), Self-Critique (Maximum) | offen | [[Socibot/kanban/04-quality-hook-pass]] |
+| **W3a** | Feedback-Capture (post_feedback.json + Reject-Reasons-UI) — mit W2 mitbauen | offen | [[Socibot/kanban/05-quality-reject-mining]] |
+| **W3b** | Aktive Lern-Pipeline (Voice-Few-Shot mit Retrieval+Caps) — erst nach 100+ Real-Approves | offen | [[Socibot/kanban/03-quality-voice-fewshot]] |
+| **W4** | UI-Settings (Tier-Cards + Lern-Dashboard + Per-Post-Override) | offen | — |
+| **W5** | Tiefen-Onboarding KURZ (3 Pflichtfragen + Inline-Sample-Review) | offen | [[Socibot/kanban/10-quality-anti-patterns]] |
+| **W6** | Trend-Context + RAG aus User-Docs | offen | [[Socibot/kanban/07-quality-trend-context]], [[Socibot/kanban/09-quality-rag-knowledge]] |
 | **1.2** | Meta-Webhooks + DM-Auto-Reply (Send) | offen | — |
-| **1.3** | LinkedIn / X OAuth-Replacement | offen | — |
-| **1.4** | TikTok Posting (über Buffer-API als Bridge) | offen | — |
+| **1.3** | LinkedIn / X OAuth-Replacement (**API-Key-Frei-Pflicht**) | offen, **Customer-DoD-Blocker** | — |
+| **1.4** | TikTok Posting (Buffer-API-Bridge) | offen | — |
 | **2.0** | Multi-Tenant (resolve_token pro User statt single active) | offen, Architektur trägt | — |
 | **2.1** | Meta-Webhooks für Comments (statt Polling) | offen | — |
 | **3.0** | Video-Engine v4.0 verifizierter Erst-Run + MUBERT-Anbindung | offen | — |
