@@ -54,12 +54,25 @@ related:
 
 Jede Änderung an Generation/Critique/Risk-Pipeline muss messbar sein bevor sie Production-Ready ist.
 
+### Quality-Metriken (Stilqualität)
 - [ ] **Gold-Set existiert**: 50 Test-Topics × 5 Personas (Anwalt/Arzt/Heilpraktiker/Coach/Steuerberater) × 5 Plattformen
-- [ ] **Quality-Rubric** mit 5 Dimensionen (Brand-Voice / Audience-Fit / Specificity / Engagement-Hook / Platform-Fit) — gewichtet, persistiert in `data/critique_rubric.json`
-- [ ] **Logging-Pipeline** für jeden Generation-Call: Prompt + Output + User-Feedback + Tier + Cost + Latency in `data/generation_log.jsonl`
+- [ ] **Quality-Rubric** mit 5 Dimensionen (Brand-Voice 30% / Audience-Fit 20% / Specificity 20% / Engagement-Hook 15% / Platform-Fit 15%) — gewichtet, persistiert in `data/critique_rubric.json`
+- [ ] **Logging-Pipeline** für jeden Generation-Call: Prompt + Output + User-Feedback + Tier + Cost + Latency in `data/generation_log_YYYY-MM.jsonl` (Fernet-encrypted prompt/output, HMAC-pseudonymized user_id, 90d Retention)
 - [ ] **Cost-Budget-Tracker** pro Tier: warnt wenn Tier-Cost-Estimate ±30% vom realen Wert abweicht
 - [ ] **Baseline-Run** vor jedem Pipeline-Change: Score-Snapshot über Gold-Set
 - [ ] **Regression-Block**: Pipeline-Change wird verworfen wenn Score-Drift > -5% in mind. einer Persona
+
+### Compliance-Metriken (Regeltreue, Codex-vorgegeben)
+- [ ] **Risk-Recall**: Anteil bekannter Compliance-Verstöße die geblockt werden. Floor ≥95%, Layer 1 alone ≥70%
+- [ ] **False-Block-Rate**: Anteil legitimer Posts die fälschlich geblockt werden. Hard-Cap ≤10%
+- [ ] **Override-Rate**: wie oft User Soft-Block überschreibt. Wenn >30% pro Persona → Pattern-Review-Trigger (False-Positive-Indikator)
+
+### Tier-Differenzierungs-Metriken (Codex-vorgegeben — Premium muss verkaufbar sein)
+- [ ] **First-Pass-Accept-Rate** pro Tier: wie oft User die erste Variant approved ohne Regen
+- [ ] **Rewrite-Quote** pro Tier: wie oft Self-Critique tatsächlich besseren Output produziert
+- [ ] **Hook-Score** pro Tier (aus Rubric Dimension `engagement_hook`): muss in Premium-Tier ≥0.5 Punkte über Standard liegen
+- [ ] **Platform-Fit-Score** pro Tier: muss ab Premium ≥0.3 Punkte über Standard liegen
+- [ ] Wenn keiner dieser Werte signifikant unterscheidbar: **Tier-Pricing nicht verkaufbar**, Tier-Backend bleibt feature-flagged-off
 
 ## 3 — Customer-DoD (pre-Pricing-Launch)
 
@@ -179,11 +192,12 @@ Was vor dem **ersten echten Kunden** erfüllt sein muss:
 |---|---|---|---|
 | **1.1** | Meta OAuth ohne API-Key-Eingabe | ✅ funktional fertig (vorbehaltlich Smoke-Test-Operator-Run) | [[Socibot/kanban/02-meta-oauth-phase-1-1]] |
 | **W0** | Phase-1.1-Close: Commits, requirements, Smoke-Test-Vorbereitung | offen | — |
-| **W0.5** | Eval/Telemetry-Foundation (Gold-Set + Rubrik + Logging + Cost-Tracker) | offen, **Codex-Critical** | — |
-| **W1** | Quality-Floor (immer aktiv): Originality + Risk-Check Hybrid (Regex+Claude) + Anti-Slop **+ API-Key-Frei-Sweep** | offen | [[Socibot/kanban/06-quality-originality]], [[Socibot/kanban/08-quality-risk-check]] |
+| **W0.75** | **API-Key-Frei-Sweep** (Codex-vorgezogen): Token-Forms raus, OAuth-Status-Badges + Coming-Soon-Cards, `/token-speichern` Scope eingrenzen | offen, **Customer-DoD-Hard-Stop** | [[Socibot/kanban/11-api-key-frei-sweep]] |
+| **W0.5** | Eval/Telemetry-Foundation (Gold-Set + Rubrik + Logging + Cost-Tracker + **Compliance-Metriken**: Risk-Recall/False-Block-Rate/Override-Rate) | offen, **Codex-Critical** | — |
+| **W1** | Quality-Floor (immer aktiv): Originality + Risk-Check Hybrid (Regex+Claude) + Anti-Slop. **Risk-Check-v2 bereits implementiert (Layer 1+2, 5 Personas, 75 Patterns) — Review läuft** | teilweise gebaut | [[Socibot/kanban/06-quality-originality]], [[Socibot/kanban/08-quality-risk-check]] |
 | **W2** | Tier-Backend SCHLANK: Tier-Router + Cost-Estimator (immer), Hook-Split (Premium+), Self-Critique (Maximum) | offen | [[Socibot/kanban/04-quality-hook-pass]] |
 | **W3a** | Feedback-Capture (post_feedback.json + Reject-Reasons-UI) — mit W2 mitbauen | offen | [[Socibot/kanban/05-quality-reject-mining]] |
-| **W3b** | Aktive Lern-Pipeline (Voice-Few-Shot mit Retrieval+Caps) — erst nach 100+ Real-Approves | offen | [[Socibot/kanban/03-quality-voice-fewshot]] |
+| **W3b** | Aktive Lern-Pipeline — erst nach 100+ Real-Approves. **Mechanik (Codex-präzisiert)**: nur aus Approves lernen → pro Brand/Persona/Plattform Embeddings → top-k Retrieval → komprimierte Style-Slots → Token-Cap → ältere/abgelehnte Beispiele aktiv abwerten (Decay) | offen | [[Socibot/kanban/03-quality-voice-fewshot]] |
 | **W4** | UI-Settings (Tier-Cards + Lern-Dashboard + Per-Post-Override) | offen | — |
 | **W5** | Tiefen-Onboarding KURZ (3 Pflichtfragen + Inline-Sample-Review) | offen | [[Socibot/kanban/10-quality-anti-patterns]] |
 | **W6** | Trend-Context + RAG aus User-Docs | offen | [[Socibot/kanban/07-quality-trend-context]], [[Socibot/kanban/09-quality-rag-knowledge]] |

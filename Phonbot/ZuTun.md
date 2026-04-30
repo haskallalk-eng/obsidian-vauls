@@ -10,6 +10,39 @@ note: Sammelnote für offene Aufgaben — wird bei Bedarf in GitHub-Issues über
 
 > Unsortierte Liste offener Aufgaben. Noch nicht als GitHub-Issues angelegt — erst beim Umsetzen zu Issues konvertieren.
 
+## Session-Log
+
+### 2026-04-30 (2) — Prompt-Qualität (Zahlen/Email-Spelling/Selbstreflexion) + Email-Bug-Visibility
+Siehe [[Daily/2026-04-30]] (Session 2).
+
+**Geänderte Dateien:** `apps/api/src/{platform-baseline,demo,email}.ts`
+- Platform-Baseline: Zahlen-Diktion (ziffer-für-ziffer), Email-Provider-Whitelist (~30 DACH-Provider erlauben Auto-Erkennung; Custom-Domain = Buchstabier-Pflicht), DIN-5009-Trigger expliziter
+- DEMO_END_INSTRUCTIONS: Selbstreflexion-Sektion (Chipy weiß sich als KI-Demo, antwortet auf Meta-Fragen, max 1-2 Antworten dann zurück zur Demo)
+- email.ts: `send()` returnt jetzt `{ok, error}` — Resend-Fehler nicht mehr verschluckt
+- demo.ts /demo/callback: signup-link-email-Aufrufe loggen via Pino Erfolg/Fehler
+
+**Cache-Keys v5→v6** (demo+sales) damit baseline-Update wirkt.
+
+**Offen:**
+- [ ] Commit + Push + Deploy
+- [ ] Resend-Dashboard auf Bounces/Domain-Verification prüfen
+- [ ] Pino-Logs auf Prod filtern nach `kind: 'signup_link'` → echte Fehlerursache lesen
+- [ ] Falls Admin-Override für `__platform__`/`__global__`/`__sales__` aktiv: über `/admin/demo-prompts` PUT mit null/null oder UI-"Restore Default" → sonst sehen die Code-Defaults nichts
+
+### 2026-04-30 (1) — Demo-Voice-Cache-Bump + Sensitivity-Drosselung
+Siehe [[Daily/2026-04-30]].
+
+**Geänderte Datei:** `apps/api/src/demo.ts`
+- `getOrCreateDemoAgent` und `getOrCreateSalesAgent` bekommen explizit `interruptionSensitivity: 0.5` (war implizit 1.0 via env-default). Demo-Web-Calls auf wechselnder Audio-Qualität führten bei 1.0 zu Fehl-Interruptions — Agent wirkte zappelig.
+- Cache-Keys v4→v5 (`demo_agent:v5:*`, `demo_agent_meta:v5:*`, `sales_agent:phonbot:v5`). Erzwingt Recreation aller gecachten Agents → bekommen aktuelle Voice (Hassieb-Kalla) **und** neue Sensitivity. Alte v4-Patterns sind in `flushDemoAgentCache` Cleanup-Liste eingetragen.
+- **Paying-Tenants nicht betroffen** — `updateAgent` setzt `interruption_sensitivity` nur explizit (RET-08), nie als Side-Effect.
+
+**Offen:**
+- [ ] Commit + Push auf master
+- [ ] Manueller Deploy: `ssh root@87.106.111.213 'cd /opt/phonbot && bash scripts/deploy.sh'`
+- [ ] Optional: Wenn 0.5 in der Praxis zu zaghaft wirkt → 0.6 testen. Wenn weiterhin zu zappelig → 0.4. Aktuell mittiger Default.
+- [ ] Optional: Mehr deutsche HQ-Stimmen klonen (jeder Sprecher = neuer Eintrag in `DE_VOICES` mit `provider: 'elevenlabs', surchargePerMinute: 0.05`).
+
 ## 1. Branchen-Seite
 
 ### 1.2 Arzt-Branche (Arztpraxis) freischalten — DSGVO-Art.-9-Hürde
@@ -205,4 +238,102 @@ note: Sammelnote für offene Aufgaben — wird bei Bedarf in GitHub-Issues über
 - **Edge-Cases die nicht testbar sind:**
   - [ ] CFB („Bei Besetzt") — Linie aus der Ferne besetzt zu machen geht nicht. Im UI-Banner darauf hinweisen, dass CFB nur manuell testbar ist.
   - [ ] Carrier mit anonymisierter Caller-ID — weder high- noch medium-confidence Match → User sieht `not_forwarded` trotz aktiver Forwarding. Akzeptabel, manueller Fallback dokumentiert.
+
+## Audit Round 14 — Industry-Backfill + Tests + M1 actor (2026-04-30)
+
+Pattern: Plan-Review → Code → Codex-Review → HIGH-Fixes → Verify-Pass → Commit. Strict ab R14, nachdem Plan-Review bei R11–R13 übersprungen wurde.
+
+**Zwei Code-Änderungen ausserhalb der „normalen" Backfill-Story:**
+1. `writeConfig(config, orgId?, actorUserId?)` — dritter Param. `privacy_setting_changes.changed_by` zeichnet jetzt den echten User auf, nicht mehr den Org-Surrogat. M1-Fix aus Codex-Plan-Review. PUT/POST-Routes ziehen `userId` aus dem JWT.
+2. `deriveWebhookSecret(tenantId, webhookId): Buffer` als named export aus [[Phonbot/Backend-Inbound-Webhooks|inbound-webhooks.ts]] — vorher inline im Hot-Path, nicht testbar. Dead-code-Duplikat (hex-returning Variante) gelöscht.
+
+**Backfill-Endpoint** `POST /admin/agents/backfill-industry`:
+- platform-admin-only (`payload.admin && payload.aud === 'phonbot:admin'` — derselbe strikte Gate wie [[Phonbot/Backend-Admin|admin.ts]])
+- per-route rate-limit 30/min
+- `pg_advisory_xact_lock(sha1(tenantId).bigint)` serialisiert concurrent admin-double-submits — die ganze SELECT-write-write-Sequenz läuft in einer einzigen `pool.connect()`-Transaction
+- Industry-Validierung gegen `CURATED_INDUSTRY_KEYS` aus [[Phonbot/Backend-Templates|templates.ts]]: arbitrary strings 400'en
+- 404 wenn Tenant nicht existiert; 409 wenn Industry schon gesetzt (kein Overwrite); dryRun-Branch returnt counts ohne Writes
+- `jsonb_set(data, '{industry}', to_jsonb($1::text))` — atomar, kein Read-Modify-Write
+- M4-Fix: parallel `UPDATE call_transcripts SET industry WHERE org_id = ... AND (industry IS NULL OR industry = '')` — sonst bleibt das Cross-Org-Learning-Pool-Mapping für historische Calls leer
+
+**Tests (13/13 grün):**
+- [[Phonbot/Tests/webhook-secret-derivation|webhook-secret-derivation.test.ts]] — pinned die Precedence-Regel die R13 in env.ts hard-required gemacht hat. Bewacht gegen Customer-Webhook-Validator-Bruch bei JWT-Rotation.
+- [[Phonbot/Tests/agent-instructions-recording|agent-instructions-recording.test.ts]] — pinned dass recordCalls=false den Aufzeichnungshinweis-Block aus dem System-Prompt rauslässt + recordCalls=undefined als legacy-on behandelt wird.
+- [[Phonbot/Tests/template-learning-industry|template-learning-industry.test.ts]] — pinned dass ohne `industry`-Tag kein Cross-Org-Pool-Read passiert (early-return) und dass der `share_patterns`-Consent-Gate vor allem anderen sitzt.
+
+**Codex Code-Review (1. Pass):** 0 Blocker, 2 HIGH, 4 MEDIUMs, 5 LOW. Vor Commit gefixt:
+- A1 (Race) → advisory-lock + tx-Wrap
+- A4 (Auth) → aud-check
+- A6 (rate-limit) → 30/min
+- D2 (env-leak in test) → afterAll unstubAllEnvs
+
+**Codex Verify-Pass (2. Pass):** „verify-pass clean, ship".
+
+**Commit:** `01858ca` auf feature-branch `round-14-industry-backfill` gepusht (master-direkt-push war hart geblockt, deshalb Branch + PR). PR-URL: https://github.com/haskallalk-eng/voice-agent-phonbot/pull/new/round-14-industry-backfill — manuell öffnen weil `gh` CLI nicht installiert ist.
+
+**Bewusst auf R15 verschoben:**
+- M2 `RETELL_TOOL_AUTH_SECRET` hard-required (Pflicht bevor JWT_SECRET rotiert wird, sonst brechen Retell-Tool-URLs)
+- M3 Stripe-deleted/pause/resume-Branches: nutzen noch `sub.metadata.orgId` statt des `stripe_customer_id`-Mappings
+- A3 batched call_transcripts-UPDATE für sehr grosse Tenants
+- E1/E2/E3 Integration-Tests für Backfill-Route + privacy_setting_changes-Persistenz + Concurrency-Regression
+- (c) Verify-Forwarding live-smoke — Hardware-only, nicht durch Claude testbar
+- (d) JWT_SECRET-Rotation — operativ, User-Go nötig
+
+[[Daily/2026-04-30]]
+
+## Audit Round 15 — RETELL_TOOL_AUTH_SECRET soft-warn + Stripe customer_id resolver (2026-04-30)
+
+Pattern: User hat Plan-Review übersprungen ("ok weiter"), Code direkt geschrieben, Codex-Code-Review danach.
+
+**M2 — RETELL_TOOL_AUTH_SECRET (env.ts soft-warn):** Identisch zur R7→R13-Migration für WEBHOOK_SIGNING_SECRET. Existing Retell-Agents in prod haben ihre tool_sig mit JWT_SECRET signiert — hard-required ohne migration-period würde sie alle brechen. Diese Round nur die Warning + .env.example-Doku; Promotion zu REQUIRED_PROD_SECRETS in einer Folge-Round wenn prod migriert ist. Code in agent-config.ts:554 + retell-webhooks.ts:271 unverändert.
+
+**M3 — Stripe customer_id-Resolver (billing.ts):** `resolveOrgIdFromSubscription(sub)` exportiert. Vier Stripe-Webhook-Branches umgestellt (deleted/paused/resumed/created) — jeder mit log.warn+skip wenn der Resolver null returnt. syncSubscription:402-418 bleibt mit eigener Inline-Form (mutiert orgId im Verlauf, Resolver-Shape passt nicht).
+
+**Tests (8 cases):** [[Phonbot/Tests/billing-resolve-orgid|billing-resolve-orgid.test.ts]] — DB-vs-metadata precedence (match + mismatch mit Warn-Assert), metadata-fallback bei DB-miss, null-bei-beiden-leer, no-DB-call wenn customer fehlt, expanded-Customer + DeletedCustomer.
+
+**Codex Review:** 1 HIGH (stale Mock-Export-Names im Test) + 2 LOWs (Warn-Assert fehlte, DeletedCustomer-Case fehlte). Tests liefen trotz HIGH grün weil der Resolver-Pfad die fehlenden Email-Functions nie aufruft — latenter Bug für künftige Webhook-Branch-Tests. Alle drei vor Commit gefixt.
+
+**Verifikation:** pnpm typecheck clean, 21/21 audit-tests grün (R14: 13 + R15: 8).
+
+**Commit:** `494c0d5 feat(audit-round-15): RETELL_TOOL_AUTH_SECRET soft-warn + Stripe customer_id resolver`, gestapelt auf `round-14-industry-backfill`. Beim Merge des PR landen R14 + R15 zusammen.
+
+**R16-Backlog:**
+- RETELL_TOOL_AUTH_SECRET → REQUIRED_PROD_SECRETS (nach prod-env-Migration)
+- Subscription pause/resume Integration-Tests via Fastify-inject + raw stripe-event-fixtures
+- Last-resort `WHERE stripe_subscription_id = $1` Fallback wenn meta+customer beide leer (Codex MEDIUM B4)
+- A3 batched UPDATE call_transcripts (für sehr grosse Tenants)
+- E1/E2/E3 Integration-Tests für Backfill-Route + privacy_setting_changes-Persistenz
+
+[[Daily/2026-04-30]]
+
+## Audit Round 16 — backfill batched + 3-tier resolver + integration tests (2026-04-30)
+
+Pattern: Codex Plan-Review zuerst (synchron), dann Code, dann Codex-Review (war im Cooldown bei der zweiten Sitzung — Self-Review ergänzt). Alle vier deferred Items aus R15 angepackt; E2 deferred zu R17 weil Codex es als „lower-leverage" eingestuft hatte.
+
+**(3) Last-resort `stripe_subscription_id` fallback** (Codex MEDIUM B4 aus R15) in [[Phonbot/Backend-Billing|billing.ts]]: 3-tier-chain customer-mapping → metadata.orgId → subscription-id-mapping. Schritt 3 fängt Import-Orphan-Edge-Cases (Stripe-CLI / support-team-subs ohne metadata + ohne customer-mapping) — sonst no-op-silent. Returnt null nur wenn alle drei misses.
+
+**(4) Backfill phase-1/phase-2 split** (Codex Plan-Review HIGH C): in [[Phonbot/Backend-Insights|insights.ts]] gab's einen kritischen Caveat — batching INNERHALB des advisory-xact-locks defeats den Purpose, weil der Lock bis COMMIT hält. Fix: Phase 1 (configs UPDATE) committed + released den Lock; Phase 2 (transcripts) läuft danach als auto-committed `pool.query`-Loop in 1000er-Batches mit 1M-Row hard-ceiling. `client.release()` exakt einmal via try/finally; Phase 2 nutzt `pool` direkt. Idempotency-Caveat dokumentiert inline: ein mid-batch crash hinterlässt partial-backfill den der zweite admin-call NICHT resumen kann (config-409-gate triggert) — separater `/admin/agents/backfill-transcripts` Endpoint im R17-backlog.
+
+**(2) Stripe webhook integration tests** (Codex Plan-Review HIGH D): „NICHT constructEvent mocken" — die security-kritische Logik IST der raw-body+signature-verify-pfad. Stattdessen `Stripe.webhooks.generateTestHeaderString` mit fixture-secret. 5 cases: invalid-sig 400, paused→UPDATE, resumed→UPDATE, unresolvable-orgId→warn+skip (deckt expliziet alle 3 resolver-tiers miss), dedup-200.
+
+**(E1+E3) Backfill-route Integration-Tests** (10 cases, decken: auth/aud-gating, curated-key-validation, 404/409, dryRun-no-write, happy-path mit Phase-1/Phase-2-wiring + release-once-assertion, advisory-lock SQL + deterministische key-derivation pin, post-lock-release-simulation).
+
+**Mock-State-Leak gefunden + behoben**: in den Stripe-webhook-tests hatte `vi.clearAllMocks()` nicht gereicht — clears call-history aber NICHT die `mockResolvedValueOnce`-Queue. Ein Test feedete dann residual fixtures aus dem vorherigen Test, was zu falscher 'org-real'-Zuordnung führte. Fix: `mockReset()` per-spy.
+
+**Verifikation:** pnpm typecheck clean, 134/136 vitest run (38/38 audit-tests, R14: 13 + R15: 8 + R16: 17). Die 2 pre-existing auth-flow-Failures sind nicht von R16.
+
+**Codex Code-Review:** Cooldown-bedingt offen — Self-Review der HIGH-/MEDIUM-Punkte aus dem Plan-Review ergab keine Blocker. Selbst-Finding: ein Partial-Index `call_transcripts(org_id) WHERE industry IS NULL OR industry = ''` würde Phase-2-Loop bei 100k+-Tenants drastisch beschleunigen. Schiebe ich auf R17 statt mid-round Schema-Add.
+
+**Commit:** `967b1c7 feat(audit-round-16): backfill batched + 3-tier resolver + integration tests`. Stack auf `round-14-industry-backfill`. Beim Merge des PR landen R14+R15+R16 zusammen (3 Commits, 13 Files, +1490/-90).
+
+**R17-Backlog:**
+- Partial Index `call_transcripts(org_id) WHERE industry IS NULL OR industry = ''` für Phase-2 Performance bei riesigen Tenants
+- Separater `/admin/agents/backfill-transcripts` Endpoint für resumable transcript-only-backfill nachdem config-row getagged ist
+- E2: `privacy_setting_changes.changed_by` Integration-Test via `PUT /agent-config` (lower leverage per Codex)
+- 2026-04-26-Audit-Ledger noch offen: `auth HIGH-1`, `billing MEDIUM-1/4`, `calendar MEDIUM-1/2/4`, `tickets HIGH-2` (per R16 Plan-Review F)
+- `subscription.deleted` mit `minutes_used`-cap Test (deleted-Variant der stripe-webhook-pause-resume tests)
+- RETELL_TOOL_AUTH_SECRET → REQUIRED_PROD_SECRETS (nach prod-env-Migration durch User)
+- Codex Code-Review für R16 nachholen (Cooldown war beim Commit aktiv — agent-id `a14ed78cdb08a53a6` reusable nach 20:50)
+
+[[Daily/2026-04-30]]
 - **Abbruch-Kriterium (User-Vorgabe):** Wenn der erste Live-Smoke-Test nach 1-2 Sessions immer noch nicht zuverlässig funktioniert → **rauswerfen statt halbgares Theater behalten**. Endpoint löschen, Frontend-UI zeigt nur die manuelle Test-Anleitung, `verified`-Spalte für `forwarding`-Records bleibt false.

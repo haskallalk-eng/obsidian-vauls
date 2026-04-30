@@ -15,11 +15,11 @@ contact: info@mindrails.de
 
 ## Produkte
 
-| Produkt | Beschreibung | Vault-Link |
-|---|---|---|
-| Phonbot | Voice-Agent SaaS (KI-Telefonagenten für Unternehmen) | [[Phonbot/Overview\|Phonbot]] |
-| Socibot | Social-Media-Bot (automatisierte Content-Erstellung + Posting) | [[Socibot/Overview\|Socibot]] |
-| Kanzleibot | Rechtsanwalts-SaaS für DE-Kanzleien (ReFa-Augmentation, BRAO/DSGVO) | [[Kanzleibot/Overview\|Kanzleibot]] |
+| Produkt | Status | Beschreibung | Vault-Link |
+|---|---|---|---|
+| Phonbot | active, deployed (phonbot.de) | Voice-Agent SaaS (KI-Telefonagenten) | [[Phonbot/Overview\|Phonbot]] |
+| Socibot | active, **19 commits ahead** (2026-04-30, kein Push) | Social-Media-Bot mit DSGVO-Beratungsbranche-Fokus (Persona A) | [[Socibot/Overview\|Socibot]] |
+| Kanzleibot | active, im Aufbau | Rechtsanwalts-SaaS für DE-Kanzleien (ReFa-Augmentation, BRAO/DSGVO) | [[Kanzleibot/Overview\|Kanzleibot]] |
 
 ## Regeln für den Vault
 
