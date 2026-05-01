@@ -34,8 +34,9 @@ Repo: `Hansweier/social-media-saas` (Branch: `master`).
 | W1.6 | `1e4ea2a` | quality_tier ∈ {standard, premium, maximum} orthogonal zu plan_tier |
 | W2 | `5c5ae10` | Tier-Backend: Hook+Body-Split (Premium) + Self-Critique (Maximum) + UI |
 | C-03 | `5608f9e` | DSGVO: skip_layer2-Opt-Out + Anthropic-AVV + Onboarding-Pflicht-Checkboxen |
+| Codex-P0/P1-Fixes | `4658496` | skip_layer2 server-side enforced, Tier-Merge, Re-Consent-Gate, Regen via TierPipeline |
 
-**Alle Codex-Pre-W2-Stops erledigt.** Siehe [[Socibot/Codex-Findings-2026-04-30]] für Foundation-Findings.
+**Alle Codex-Findings erledigt — Persona-A-Beta-Launch bedingt tauglich.** Siehe [[Socibot/Codex-Findings-2026-04-30]] für Foundation-Findings.
 
 ## Aktive Themen
 
