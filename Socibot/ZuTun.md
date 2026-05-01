@@ -37,13 +37,10 @@ Codex-P0-Finding: `cost_tracker.py` kennt nur `trial/starter/pro/agency`. `premi
 - Self-Critique-Pass (Maximum)
 - Cost-Estimator zeigt €/Variant pro Tier
 
-## 3. C-03 — Layer-2-Opt-Out + AVV + Onboarding (Pre-Live-Customer, 2-3h)
+## 3. C-03 — Layer-2-Opt-Out + AVV + Onboarding ✅ ERLEDIGT 2026-04-30
 
-- `skip_layer2`-Param in `compliance_service.check_compliance_v2()` implementieren (existiert nur in Doku, nicht im Code)
-- Onboarding-Pflicht-Checkbox: Anthropic-Sub-Auftragsverarbeiter + §203-Schweigepflicht-Hinweis für Anwalt/Arzt
-- AVV-Doku-Update in [[Socibot/modules/14-Findings|Findings]] + `docs/DSGVO_NOTES.md`
-- Datenschutzerklärung-Update (Anthropic SCC-Hinweis)
-- UI-Toggle „Tiefen-Compliance-Prüfung" mit Layer-2-Opt-Out
+Alle 5 Tracks implementiert, 52/52 Tests grün. Persona-A (Anwalt/Arzt) Hard-Block aufgehoben.
+Details → [[Daily/2026-04-30]].
 
 ## 4. W1.5-Folge — Pattern-Audit mit Real-World-Reviewer (USER)
 
@@ -84,6 +81,7 @@ Nach Review:
 
 ## Narrative
 
+- **2026-04-30 (C-03)**: C-03 vollständig implementiert — `skip_layer2`-Param in `compliance_service` + Route-Forwarding, DSGVO-Opt-Out-Toggle in `qualitaet.html` + neue Route `/einstellungen/qualitaet/skip-layer2`, Pflicht-Checkboxen (Anthropic-Consent + §203) in `/register` + `auth.py`, `update_fields()` in `user_service`, Anthropic-Sub-AVV in `datenschutz.html` + `DSGVO_NOTES.md`. 52/52 Tests grün. Persona-A-Hard-Block (Anwalt/Arzt) aufgehoben. Kein Commit/Push. → [[Daily/2026-04-30]]
 - **2026-04-30 (final)**: 19 commits done. **Wellen heute**: Welle 0 (Phase-1.1-Close, 9 cluster commits f1c3d72..f8666c8), W0.6 (Compliance-v2 + Stabilisierung, b6bbca1), W0.75 (API-Key-Frei-Sweep, e0b35f3), W0.5 (Eval-Framework Integration, c60e7bb), W0.5b (Codex-Quick-Fixes, da07009), W1.5 (Pattern-Refresh, 3a6562b). 165 Tests grün, 0 skipped. **Codex-Verdikt**: Foundation solide, vor W2 noch W1.6 + C-03 nötig. Master 19 ahead, kein Push. → [[Daily/2026-04-30]]
 - 2026-04-30 (nacht): W0.5 Track 4 (Gold-Set + Baseline-Tools) implementiert — `tools/eval/generate_gold_set.py` (250 Cases, append-only JSONL), `tools/eval/run_baseline.py` (BaselineSnapshot, Aggregation per Persona/Platform/Dimension), `tools/eval/compare_baseline.py` (CI-Block bei Persona-Regression). 31/31 Tests grün. Alle 4 Tracks fertig. Integration-Step ausstehend. → [[Daily/2026-04-30]]
 - 2026-04-30 (abends): W0.5 Track 2 (cost_tracker) implementiert — `dashboard/services/cost_tracker.py` (~260 LOC), `dashboard/routes/eval_dashboard.py`, `dashboard/templates/eval_dashboard.html`, `tests/test_cost_tracker.py` (24/24 grün). Tier-Drift-Alerts (warn>=15%, alert>=30%), SQLite WAL-Mode, Operator-Dashboard `/eval/`. → [[Daily/2026-04-30]]

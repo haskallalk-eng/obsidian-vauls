@@ -19,9 +19,9 @@ AI-getriebenes Social-Media-SaaS für deutsche KMUs. Generiert + plant + postet 
 `Desktop/Social media Bot/` — Python 3.11 / Flask / Jinja2 / Vanilla JS / Catppuccin-Mocha-Theme.
 Repo: `Hansweier/social-media-saas` (Branch: `master`).
 
-## Stand 2026-04-30
+## Stand 2026-05-01
 
-**19 commits ahead** von `origin/master` (lokal, **kein Push**). 7 Wellen heute, 165 Tests grün, 0 skipped.
+**22 commits ahead** von `origin/master` (lokal, **kein Push**). 10 Wellen, 254 Tests grün, 0 skipped.
 
 | Welle | Commit | Inhalt |
 |---|---|---|
@@ -31,8 +31,11 @@ Repo: `Hansweier/social-media-saas` (Branch: `master`).
 | W0.5 | `c60e7bb` | Eval/Telemetry-Foundation (Logger+Cost+Judge+Gold-Set) |
 | W0.5b | `da07009` | Codex-Quick-Fixes (run_baseline-Signature + Feedback-Hook) |
 | W1.5 | `3a6562b` | Pattern-Refresh (UWG5-02 + HEILPRG-02/03) |
+| W1.6 | `1e4ea2a` | quality_tier ∈ {standard, premium, maximum} orthogonal zu plan_tier |
+| W2 | `5c5ae10` | Tier-Backend: Hook+Body-Split (Premium) + Self-Critique (Maximum) + UI |
+| C-03 | `5608f9e` | DSGVO: skip_layer2-Opt-Out + Anthropic-AVV + Onboarding-Pflicht-Checkboxen |
 
-**Codex-Verdikt**: Foundation strukturell solide. Vor W2 (Tier-Backend) noch W1.6 + C-03. Siehe [[Socibot/Codex-Findings-2026-04-30]].
+**Alle Codex-Pre-W2-Stops erledigt.** Siehe [[Socibot/Codex-Findings-2026-04-30]] für Foundation-Findings.
 
 ## Aktive Themen
 

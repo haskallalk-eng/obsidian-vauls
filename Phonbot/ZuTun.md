@@ -12,6 +12,30 @@ note: Sammelnote für offene Aufgaben — wird bei Bedarf in GitHub-Issues über
 
 ## Session-Log
 
+### 2026-05-01 — DSGVO-Compliance-Akte komplett + Prod-Deploy + Supabase-Switch + UG-Klarstellung
+Siehe [[Daily/2026-05-01]].
+
+**Geänderte Dateien (zentral):** `apps/web/public/{avv,sub-processors,impressum,datenschutz}/index.html`, `compliance/{README.md,vvt.md,dpa-checklist.md,mindrails-dpa-template.md,tias/*.md,dpa-requests/*.eml,dpas/{ionos,retell,resend}/*.pdf}`, `apps/api/src/{voice-catalog.ts,index.ts,db.ts}`, `apps/api/package.json`, `Caddyfile`, `scripts/{init-missing-secrets,set-env-var}.mjs`
+
+- AVV (Art. 28 DSGVO Volltext) + Sub-Processor-Liste live unter [phonbot.de/avv/](https://phonbot.de/avv/) und [phonbot.de/sub-processors/](https://phonbot.de/sub-processors/) — `69cfd63`/`0f52771`
+- 8 vorausgefüllte TIAs (Schrems II) für US-Sub-Processors + VVT (Art. 30 DSGVO) + Mindrails-DPA-Vorlage zum Mitschicken — `515fba4`
+- Hetzner → IONOS überall, Caddy `/calendar/*` → API Routing-Fix, Compliance-Files alle auf GF Hans Waier — `515fba4`/`6ac012e`
+- DE-Voice-Catalog 11 → 19 Stimmen via 8 ElevenLabs Multilingual-v2 HQ-Voices (Sarah/Charlotte/Matilda/Lily + Daniel/Brian/Adam/James) — `036b5ae`
+- 3 DPAs gesigned: IONOS-AVV, Retell (DocuSign-Self-Service), Resend (DocuSign) — `9a84747`
+- Dev-Setup Windows-fixed: `pnpm exec tsx` + `dns.setDefaultResultOrder('ipv4first')` im App-Code — `6dab681`
+- Branch `round-14-industry-backfill` → master gemerged + push erfolgreich — `2cc23d6`
+- **Prod-Deploy** via SSH (87.106.111.213): git pull + Container-Build + Helper-Skripte für Secrets via SSH-stdin-Pipe (Werte nie im Chat) + Caddy hard-restart. Smoke-Test live: `/health` 200, `/avv/` 200, `/sub-processors/` 200, `/calendar/google/callback` 302
+- **Supabase-Account-Switch** (alter Acc hatte falsche E-Mail): neue DB `jnqpkkzuveoeipsborwp.supabase.co`, Service-Role-Key im Chat geleakt + sofort rotiert. Lokales Setup mit DB_REJECT_UNAUTHORIZED=false (Windows-Cert-Bundle-Issue) und auskommentiertem Upstash-REDIS_URL → In-Memory-Fallback
+- **Provider-Accounts auf privat-E-Mail** `haskalla.lk@gmail.com` registriert (Supabase, GitHub, etc.) — Compliance via Company-Feld dokumentiert; Mittelfristig auf Mindrails-Business-E-Mail umziehen wenn UG eingetragen
+
+**KRITISCHE ERKENNTNIS am Session-Ende:** User hat **noch keine Mindrails UG** — läuft als Kleingewerbe (Hans Waier, Einzelunternehmer). Alle bisherigen DPAs + AVV + Impressum mit „Mindrails UG (haftungsbeschränkt)" sind technisch ungültige Verträge (Entity existiert nicht). UG-Migration kommt später wenn Geld da ist.
+
+**Offen:**
+- [ ] Compliance-Rebuild auf „Hans Waier, Einzelunternehmer" — 20+ Files mit „Mindrails UG" zu ändern, Impressum: HRB raus + §19 UStG-Hinweis statt USt-IdNr. Habe gerade Impressum Sektion 1+2 begonnen
+- [ ] 3 schon-signierte DPAs (IONOS/Retell/Resend) re-signen sobald Compliance-Naming auf Hans Waier umgestellt
+- [ ] 8 weitere DPAs gesigned (Supabase/OpenAI/Twilio/Stripe/Sentry/ElevenLabs/Cloudflare/Cartesia)
+- [ ] Sobald UG eingetragen: alle Compliance-Texte auf UG-Naming umstellen, neue HRB-Nummer + USt-IdNr ins Impressum, alle Sub-Processoren via DPA-Update auf neuen Vertragsträger transferieren
+
 ### 2026-04-30 (2) — Prompt-Qualität (Zahlen/Email-Spelling/Selbstreflexion) + Email-Bug-Visibility
 Siehe [[Daily/2026-04-30]] (Session 2).
 
@@ -336,4 +360,33 @@ Pattern: Codex Plan-Review zuerst (synchron), dann Code, dann Codex-Review (war 
 - Codex Code-Review für R16 nachholen (Cooldown war beim Commit aktiv — agent-id `a14ed78cdb08a53a6` reusable nach 20:50)
 
 [[Daily/2026-04-30]]
+
+## Audit Round 17 — Partial Index + deleted-Tests + Privacy-Audit-E2 (2026-05-01)
+
+Branch-Wirrwarr zuerst entwirrt: master enthält R14+R15+R16 via Merge `2cc23d6`. Codex Plan-Review war auf einem stale Snapshot gegründet (behauptete Items fehlten die schon drin sind). Nach Filter wurden 4 Items real angepackt:
+
+1. **Partial Index** `idx_transcripts_org_industry_null` in db.ts für Phase-2-Loop. Codex BLOCKER: muss `CONCURRENTLY` sein, sonst ACCESS-EXCLUSIVE-Lock auf call_transcripts beim ersten prod-rollout. Try/catch-wrapped — failed CONCURRENTLY (kann INVALID-Index hinterlassen) schreibt stderr-WARN, Boot-clean.
+2. **subscription.deleted Tests** (2 cases). Pre-existing fixture-bug aufgedeckt: `makeSubscriptionEvent` brauchte `.plan.interval` weil syncSubscription:526 ohne zweites optional-chain liest. paused/resumed waren „lucky" weil sie syncSubscription gar nicht aufrufen. Test-Queues straffer (3 fixtures statt 6) — vorher leftover-fixtures haben echte flow drift maskiert.
+3. **E2 Privacy-Audit-Test** (privacy-audit-changed-by.test.ts, 4 cases) — pinned dass `INSERT INTO privacy_setting_changes` die userId aus JWT kriegt (M1-Fix R15). 14 vi.mock()-Calls. primeFlipQueue matched echte Query-Order: tenantIdAvailableOrOwned → loadOwnedConfigRow → enforcePlanAgentLimitOnCreate.SELECT-1 (early-return) → prev recordCalls SELECT → UPSERT → INSERT privacy.
+4. **INDEX.md Status-Tabelle** — was seit 2026-04-26 gefixt, was offen.
+
+**Codex Code-Review:** 1 BLOCKER (CONCURRENTLY) + 2 MEDIUM + 4 LOW + 3 NIT. BLOCKER + B-MEDIUM Test-Queue-Cleanup + C-LOW Test-Comment vor Commit gefixt.
+
+**Verifikation:** typecheck clean, 49/49 audit-tests grün (R14:13 + R15:8 + R16:17 + R17:11), 2 pre-existing auth-flow unrelated.
+
+**Commit:** `99aafc3 feat(audit-round-17): partial index + deleted-event tests + privacy audit E2` auf neuem branch `round-17-tech-debt`. PR-URL: https://github.com/haskallalk-eng/voice-agent-phonbot/pull/new/round-17-tech-debt
+
+**R18-Backlog:**
+- `/admin/agents/backfill-transcripts` Endpoint für Phase-2-Crash-Recovery (R16-known-limitation)
+- `customer.subscription.updated` Route-Test (Companion zu deleted)
+- **auth HIGH-1** Refresh-Token Cross-Tab-Race — BroadcastChannel Frontend-Refactor
+- **billing MEDIUM-1** mid-cycle Plan-Downgrade `minutes_used` cap
+- **calendar MEDIUM-1/2/4** aus 2026-04-26 Audit
+- Composite `(org_id, id) WHERE` partial index als R17-NIT — nach erstem prod-Backfill messen
+- tickets HIGH-2 (PII im Email-Body) — UX-Konsens vom User nötig
+
+[[Daily/2026-05-01]]
+
+---
+
 - **Abbruch-Kriterium (User-Vorgabe):** Wenn der erste Live-Smoke-Test nach 1-2 Sessions immer noch nicht zuverlässig funktioniert → **rauswerfen statt halbgares Theater behalten**. Endpoint löschen, Frontend-UI zeigt nur die manuelle Test-Anleitung, `verified`-Spalte für `forwarding`-Records bleibt false.
