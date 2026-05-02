@@ -99,8 +99,18 @@ Nach Review:
 - [[Socibot/kanban/12-w0-6-compliance-stabilization]]
 - [[Socibot/kanban/11-api-key-frei-sweep]]
 
+## 9. Ideen-Mediathek — Nächste Schritte
+
+Ideen-Mediathek MVP ist implementiert (Chat + Archiv). Offene Folge-Steps:
+
+- **Calendar-Integration**: `idea_to_post`-Route gibt aktuell 501 zurück. Anbindung an `content_calendar.json` / Calendar-Blueprint kommt im nächsten Sprint.
+- **Auto-Wochenplan-Anbindung**: `list_archived_ideas()` ist die Schnittstelle — Wochenplan-Generator soll Ideen aus dem Archiv ziehen statt nur Topics.
+- **Prompt-Caching**: `ideas_chat.py` ruft Claude ohne cache_control auf. Für den statischen System-Prompt lohnt sich `cache_control: {"type": "ephemeral"}` (claude-api Skill).
+- **Ideen-Status-Lifecycle**: `status="archived"` ist der einzige State. Später: `used`, `scheduled`, `posted` mit FK auf post_id.
+
 ## Narrative
 
+- **2026-04-30 (Ideen-Mediathek)**: MVP implementiert — `ideas_chat.py` (Anthropic Tool-Use mit save_idea/discard_idea/recall_recent_ideas, Whisper-Transkription), Blueprint `/ideen/*`, Templates `ideen.html` + `ideen_archiv.html`, Sidebar-Link, 15/15 Tests grün. Calendar-Integration + Auto-Wochenplan-Anbindung offen (501-Stub). → [[Daily/2026-04-30]]
 - **2026-04-30 (W3-Ads.2)**: Performance-Reports + Spend-Polling implementiert — `update_boost_metrics` (Mock-deterministisch + echter Meta-Insights-API), `poll_all_active_boosts` (6h-Cron), `get_boost_metrics`, `get_user_total_spend` (mit Monatsfilter). Neuer Job `bot/jobs/ads_metrics_polling.py`, Scheduler 6h, Routes `/ads/detail` + `/ads/refresh`, Templates ads.html (Spend/Reach-Spalten, Total-Spend-Karte) + ads_detail.html (neu). 9/9 neue Tests grün, 39/39 bestehende grün. Verbleibende Risiken: Meta Rate-Limits bei Boost-Skalierung, kein Webhook-Support, 15-60min Insights-Delay. → [[Daily/2026-04-30]]
 - **2026-04-30 (C-03)**: C-03 vollständig implementiert — `skip_layer2`-Param in `compliance_service` + Route-Forwarding, DSGVO-Opt-Out-Toggle in `qualitaet.html` + neue Route `/einstellungen/qualitaet/skip-layer2`, Pflicht-Checkboxen (Anthropic-Consent + §203) in `/register` + `auth.py`, `update_fields()` in `user_service`, Anthropic-Sub-AVV in `datenschutz.html` + `DSGVO_NOTES.md`. 52/52 Tests grün. Persona-A-Hard-Block (Anwalt/Arzt) aufgehoben. Kein Commit/Push. → [[Daily/2026-04-30]]
 - **2026-04-30 (final)**: 19 commits done. **Wellen heute**: Welle 0 (Phase-1.1-Close, 9 cluster commits f1c3d72..f8666c8), W0.6 (Compliance-v2 + Stabilisierung, b6bbca1), W0.75 (API-Key-Frei-Sweep, e0b35f3), W0.5 (Eval-Framework Integration, c60e7bb), W0.5b (Codex-Quick-Fixes, da07009), W1.5 (Pattern-Refresh, 3a6562b). 165 Tests grün, 0 skipped. **Codex-Verdikt**: Foundation solide, vor W2 noch W1.6 + C-03 nötig. Master 19 ahead, kein Push. → [[Daily/2026-04-30]]
