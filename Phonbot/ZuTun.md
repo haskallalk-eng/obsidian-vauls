@@ -413,6 +413,37 @@ Pattern: Codex Plan-Review → Code → Codex Code-Review → 2 MEDIUM-Fixes →
 
 [[Daily/2026-05-02]]
 
+## Audit Round 19 — Backfill-Polish + syncSubscription tx (2026-05-02)
+
+Codex Plan-Review empfahl R19 = backfill-polish (A1+A2+A3) + syncSubscription FOR UPDATE wrap (billing MEDIUM-4). Calendar + BroadcastChannel ausdrücklich nach R20.
+
+**Implementiert (4 Items):**
+1. **A1 ORG_NOT_FOUND disambiguation** in [insights.ts](C:/Users/pc105/.openclaw/workspace/voice-agent-saas/apps/api/src/insights.ts) — EXISTS-check vor industry-derive. typo'd orgId kriegt klar 404 ORG_NOT_FOUND statt misleading NO_INDUSTRY_CONFIGURED.
+2. **A2 pg_try_advisory_lock auf dedicated client** — Codex Code-Review fand BLOCKER: lock via pool.query, unlock via pool.query → verschiedene connections, unlock no-op auf B, A behält lock 30s. Fix: `lockClient = await pool.connect()` so dass try_advisory_lock + alle batch UPDATEs + unlock alle die same connection nutzen. 423 LOCKED bei contention.
+3. **A3 truncated/maxBatchesHit flag** — surface MAX_BATCHES-hit im response + log.warn.
+4. **billing MEDIUM-4 syncSubscription tx** in [billing.ts](C:/Users/pc105/.openclaw/workspace/voice-agent-saas/apps/api/src/billing.ts) — pre-UPDATE SELECT + UPDATE jetzt in single client.connect()-tx mit BEGIN/SELECT FOR UPDATE/UPDATE/COMMIT. Vorher konnte webhook+sofort-sync-race beide period_end lesen → beide resetMinutes=true → double-wipe. FOR UPDATE serialisiert.
+
+**Codex Code-Review:** 1 BLOCKER (advisory_lock connection-share) + 4 LOW + 1 MEDIUM (test-fixture brittleness — R20-backlog). BLOCKER vor commit gefixt.
+
+**Tests:** 19/19 backfill + 11/11 webhook = 30/30. Plus mockRelease-assertions die die BLOCKER-fix pinnen (exactly one client.release in finally, auch bei LOCKED early-return).
+
+**Verifikation:** typecheck clean, 153/155 vitest (2 pre-existing). Audit-Tests R14:13 + R15:8 + R16:17 + R17:11 + R18:10 + R19:8 = 67 grün insgesamt.
+
+**INDEX.md:** billing MEDIUM-1 + MEDIUM-4 als GEFIXT markiert.
+
+**Commit:** `5fdb14a feat(audit-round-19): backfill-transcripts polish + syncSubscription tx` auf neuem branch `round-19-polish-and-tx`. PR-URL: https://github.com/haskallalk-eng/voice-agent-phonbot/pull/new/round-19-polish-and-tx
+
+**R20-Backlog:**
+- **auth HIGH-1 BroadcastChannel** Frontend-Refactor (Codex Plan-Review D: 4-message-type handshake, 10-15s claim timeout, BEIDE api.ts + auth.tsx-Bootstrap channelen)
+- calendar MEDIUM-2 (silent-skip bei broken connections)
+- calendar MEDIUM-4 (multi-provider booking eventId arbitrary nach erst-success ordering)
+- ticket HIGH-2 (PII Email — UX-Konsens)
+- Test-fixture builder für pool/client query split (Codex R19 review E)
+- composite (org_id, id) WHERE partial index nach prod-measurement
+- RETELL_TOOL_AUTH_SECRET → REQUIRED_PROD_SECRETS promotion (User-Go nötig)
+
+[[Daily/2026-05-02]]
+
 ---
 
 - **Abbruch-Kriterium (User-Vorgabe):** Wenn der erste Live-Smoke-Test nach 1-2 Sessions immer noch nicht zuverlässig funktioniert → **rauswerfen statt halbgares Theater behalten**. Endpoint löschen, Frontend-UI zeigt nur die manuelle Test-Anleitung, `verified`-Spalte für `forwarding`-Records bleibt false.
