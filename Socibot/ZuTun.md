@@ -58,7 +58,18 @@ Test-Set durch realistische Posts ersetzen — keine Pattern-Examples (Tautologi
 
 Nach W1.6: `python tools/eval/run_baseline.py --label "vor-w2" --limit 50` mit echten Anthropic-API-Calls. Geschätzte Kosten: €5-10 pro Run (Generator Sonnet + Judge Opus über 50 Cases). Snapshot als `data/eval/baselines/vor-w2_*.json` lokal halten (gitignored).
 
-## 6. Test-Run Video Engine v4.0
+## 6. W3 Voice-Few-Shot — Nächste Schritte
+
+MVP implementiert (2026-04-30). Ab 5 echten Approves aktiv.
+
+**Offen für W3.2:**
+- Embedding-basiertes Retrieval (statt tag-only) für semantische Ähnlichkeit
+- Sidebar-Link / Operator-Dashboard-Integration für `get_stats()`
+- Optional: `select_variant()`-Route ebenfalls hooken (aktuell nur `approve_post`)
+
+**Bekannte Einschränkung:** Tag-only-Matching (persona + platform) ist schwächer als Embeddings bei großem Pool — aber MVP-tauglich bis ~100 Samples.
+
+## 7. Test-Run Video Engine v4.0
 
 Smoke-Test der gesamten Video-Pipeline: Prompt → Generation → Upload → Post. Steht seit 2026-04-18 aus. Unabhängig von Eval-Framework.
 
@@ -85,4 +96,5 @@ Nach Review:
 - **2026-04-30 (final)**: 19 commits done. **Wellen heute**: Welle 0 (Phase-1.1-Close, 9 cluster commits f1c3d72..f8666c8), W0.6 (Compliance-v2 + Stabilisierung, b6bbca1), W0.75 (API-Key-Frei-Sweep, e0b35f3), W0.5 (Eval-Framework Integration, c60e7bb), W0.5b (Codex-Quick-Fixes, da07009), W1.5 (Pattern-Refresh, 3a6562b). 165 Tests grün, 0 skipped. **Codex-Verdikt**: Foundation solide, vor W2 noch W1.6 + C-03 nötig. Master 19 ahead, kein Push. → [[Daily/2026-04-30]]
 - 2026-04-30 (nacht): W0.5 Track 4 (Gold-Set + Baseline-Tools) implementiert — `tools/eval/generate_gold_set.py` (250 Cases, append-only JSONL), `tools/eval/run_baseline.py` (BaselineSnapshot, Aggregation per Persona/Platform/Dimension), `tools/eval/compare_baseline.py` (CI-Block bei Persona-Regression). 31/31 Tests grün. Alle 4 Tracks fertig. Integration-Step ausstehend. → [[Daily/2026-04-30]]
 - 2026-04-30 (abends): W0.5 Track 2 (cost_tracker) implementiert — `dashboard/services/cost_tracker.py` (~260 LOC), `dashboard/routes/eval_dashboard.py`, `dashboard/templates/eval_dashboard.html`, `tests/test_cost_tracker.py` (24/24 grün). Tier-Drift-Alerts (warn>=15%, alert>=30%), SQLite WAL-Mode, Operator-Dashboard `/eval/`. → [[Daily/2026-04-30]]
+- **2026-04-30 (W3-MVP)**: Voice-Few-Shot-Service implementiert — `voice_few_shot.py` (record_approval/rejection, get_few_shot_examples mit Decay+Token-Cap, build_few_shot_prompt_block). approval.py + variant_service.py gehooked. 12/12 Tests grün. Ab 5 Approves aktiv. W3.2 (Embeddings) bleibt offen. → [[Daily/2026-04-30]]
 - 2026-04-30: W0.5 Track 1 (eval_logger) implementiert — `dashboard/services/eval_logger.py` + `bot/jobs/eval_retention.py` + `tests/test_eval_logger.py`. 34/34 Tests grün. Logging-Foundation für Eval-Framework steht. → [[Daily/2026-04-30]]
