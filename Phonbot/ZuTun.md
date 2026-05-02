@@ -387,6 +387,32 @@ Branch-Wirrwarr zuerst entwirrt: master enthält R14+R15+R16 via Merge `2cc23d6`
 
 [[Daily/2026-05-01]]
 
+## Audit Round 18 — Backfill-Recovery + Downgrade-Cap + 10 Tests (2026-05-02)
+
+Pattern: Codex Plan-Review → Code → Codex Code-Review → 2 MEDIUM-Fixes → Commit.
+
+**Implementiert:**
+1. **`POST /admin/agents/backfill-transcripts`** ([insights.ts](C:/Users/pc105/.openclaw/workspace/voice-agent-saas/apps/api/src/insights.ts)) — Companion zu /admin/agents/backfill-industry für Phase-2-Crash-Recovery (R16 known-limitation). Body `{ orgId, industry?, dryRun? }`. industry derived via SELECT DISTINCT wenn omitted, 409 AMBIGUOUS_INDUSTRY wenn org-configs disagree (Codex Plan-Review B: eine org kann mehrere agent_configs haben). Same batched-loop wie R16-Phase-2.
+2. **billing MEDIUM-1 mid-cycle Plan-Downgrade `minutes_used` cap** ([billing.ts](C:/Users/pc105/.openclaw/workspace/voice-agent-saas/apps/api/src/billing.ts)). Pre-UPDATE SELECT widened um minutes_limit zu lesen (Codex C: kein zweiter round-trip). Wenn `newLimit < oldLimit` UND nicht resetMinutes → composition `minutes_used = LEAST(minutes_used, $7::int)` inline. Atomic.
+3. **subscription.updated Tests** (3 cases) plus 6 Tests für /admin/agents/backfill-transcripts.
+
+**Codex Code-Review fand 2 MEDIUMs:**
+- **B2**: silent free-fallback bei unknown stripe price.id wurde durch R18 destruktiv (würde minutes_used auf 30 cappen wenn ops eine neue Stripe-Price-ID vergisst). Fix: log.warn + suppress LEAST-clause wenn matchedPlan null. Plus regression-Test.
+- **C2**: Test-Fixture nutzte fragile unknown-price→free fallback statt echte Starter-PRICE-ID. Fix: STRIPE_PRICE_STARTER env-stub + neuer `priceId`-Param in makeSubscriptionEvent. Plus bind-checks ($2='starter', $7=360).
+
+**Verifikation:** typecheck clean, 151/153 vitest run (2 pre-existing auth-flow). 59/59 audit-tests grün insgesamt (R14:13 + R15:8 + R16:17 + R17:11 + R18:10).
+
+**Commit:** `e8767e5 feat(audit-round-18): backfill-transcripts endpoint + downgrade cap + tests` auf neuem branch `round-18-recovery-and-downgrade`. PR-URL: https://github.com/haskallalk-eng/voice-agent-phonbot/pull/new/round-18-recovery-and-downgrade
+
+**R19-Backlog:**
+- billing MEDIUM-4 (syncSubscription SELECT-then-UPDATE race ohne tx — Codex D1)
+- auth HIGH-1 BroadcastChannel cross-tab refresh-token race — Frontend-Refactor: BEIDE api.ts UND auth.tsx-Bootstrap müssen channelled werden, nicht nur api.ts (Codex Plan-Review D)
+- calendar MEDIUM-2/4 (MEDIUM-1 ist eigentlich schon atomar via Unique-Index, per Codex Plan-Review E)
+- backfill-transcripts: org-scoped advisory_xact_lock (Codex A2 LOW), `truncated/maxBatchesHit`-flag (A3 NIT), ORG_NOT_FOUND vs NO_INDUSTRY_CONFIGURED disambiguation (A1 LOW)
+- tickets HIGH-2 (PII im Email-Body) — UX-Konsens vom User nötig
+
+[[Daily/2026-05-02]]
+
 ---
 
 - **Abbruch-Kriterium (User-Vorgabe):** Wenn der erste Live-Smoke-Test nach 1-2 Sessions immer noch nicht zuverlässig funktioniert → **rauswerfen statt halbgares Theater behalten**. Endpoint löschen, Frontend-UI zeigt nur die manuelle Test-Anleitung, `verified`-Spalte für `forwarding`-Records bleibt false.
