@@ -12,6 +12,51 @@ note: Sammelnote für offene Aufgaben — wird bei Bedarf in GitHub-Issues über
 
 ## Session-Log
 
+### 2026-05-02 (mittag) — DPA-Akte 11/11 komplett + Prod-Supabase-Account-Migration
+Siehe [[Daily/2026-05-02]] (Compliance-DPA-Block, parallel zur Audit-/UX-Marathon-Session).
+
+**Geänderte Dateien:** `compliance/dpa-checklist.md`, `compliance/dpas/{cloudflare,cartesia,supabase,twilio,openai,stripe,sentry,elevenlabs}/*` (8 neue Anbieter-Folder), `apps/api/.env` (lokal) + `/opt/phonbot/apps/api/.env` (prod via SSH-stdin)
+
+- **Prod-Supabase-Migration** vom alten Account `vhuvfykdvpypxhsiueay` auf `jnqpkkzuveoeipsborwp` (alter Acc hatte falsche E-Mail). Neue DB-URL via SSH-stdin-Pipe in prod-`.env` geschrieben (Wert nie im Chat). dbproxy-Container (alpine/socat IPv6→IPv4-Tunnel) mit `--network host` neu hochgezogen — vorher schlug `--network phonbot_default` mit ECONNREFUSED fehl.
+- **6 weitere DPAs auf 11/11** dokumentiert: Cloudflare (by-incorp v6.4 PDF), Cartesia (by-incorp text), Supabase (DocuSign-signed), Twilio (by-incorp text April-2026), OpenAI (by-incorp PDF), Stripe (by-incorp 2025-Nov-18), Sentry (DocuSign-signed), ElevenLabs (by-incorp text). Vollständige DPA-Checkliste: 11/11 ✅ — `2622dc0` + `7046366` + `d5469a6` + `cbe967f`
+- **ElevenLabs-DPA-Modus-Korrektur**: initial falsch als „muss aktiv unterzeichnet werden" eingeordnet. Nach User-Rückfrage „sicher dass es so ist" via curl auf [elevenlabs.io/terms-of-use](https://elevenlabs.io/terms-of-use) verifiziert → Klausel „Our Data Processing Addendum, which governs our processing..." → tatsächlich by-incorporation. Eintrag in `compliance/dpa-checklist.md` + `dpas/elevenlabs/2026-05-02-ElevenLabs-DPA-text.md` korrigiert.
+- **Cartesia Zero-Data-Retention-Toggle gesucht** — User findet ihn nicht im Dashboard. Toggle-Lokation in Cartesia-Doku noch nicht direkt verlinkbar; offen als TODO mit User.
+
+**Methodik-Erkenntnisse:**
+- DPA-by-incorporation ist häufiger als gedacht (8 von 11 Anbietern). Saubere Doku-Strategie: PDF/Markdown-Snapshot der DPA-Klausel ablegen + Link auf Quelle in `dpa-checklist.md`. Kein DocuSign-Flow nötig wenn DPA bereits Bestandteil des Hauptvertrags ist.
+- Customer-Entity-Mismatch bei DocuSign-Self-Service: bei den 4 schon-signierten DPAs (IONOS/Retell/Resend/Sentry/Supabase) steht teilweise „Mindrails" als Customer-Name — UG existiert noch nicht. Re-Sign nötig sobald UG eingetragen oder Customer-Naming auf „Hans Ulrich Waier (Einzelunternehmer)" korrigiert.
+
+**Offen:**
+- [ ] Cartesia ZDR-Toggle aktivieren — Direct-Link zur exakten Settings-Page in Doku noch nicht gefunden, User soll im Cartesia-Dashboard unter „Privacy" / „Data Retention" / „API Settings" suchen
+- [ ] 4 DocuSign-DPAs re-signen sobald UG eingetragen (Retell/Resend/Sentry/Supabase — Customer-Entity-Naming)
+- [ ] dbproxy in `docker-compose.yml` einpflegen (manueller Container überlebt `docker compose down` nicht)
+- [ ] Alten Supabase-Account `vhuvfykdvpypxhsiueay` löschen via [supabase.com/dashboard](https://supabase.com/dashboard) → Project → Settings → General → Delete Project
+
+### 2026-05-02 (abends) — Voice-Agent-Hardening + UX-Overhaul + Stripe-Fix + Daily-Routine
+Siehe [[Daily/2026-05-02]] (Marathon-Session zwischen Audit-Round-19 und Compliance-DPA-Block).
+
+**Geänderte Files (api):** `apps/api/src/{platform-baseline,demo,retell,billing,auth}.ts`. **Web:** `apps/web/src/ui/{LoginPage,ResetPasswordPage,Sidebar,PhonbotIcons,PasswordInput,onboarding/OnboardingWizard,agent-builder/{BehaviorTab,AgentListView,CapabilitiesTab,WebhooksTab}}.tsx`. **Infra:** `Caddyfile`. **Cloud:** Routine `trig_01CjPW55mYw5EeXf3sYQ6Se6`. **DB:** orgs.plan upgrade.
+
+- Voice-Prompts industrieweit gehärtet (Date-Awareness, Empathie, Single-Question, Tone, Out-of-Scope-Alt, Confidence-Honesty) — `6fc5f58`
+- 5-Persona-Stress-Test → 4 Lapses gefunden + gefixt, Cache v9→v10 — `5f1a609`
+- Onboarding-Öffnungszeiten: strukturierter Editor matching Hauptapp — `f0f797c`
+- Persistenter Show-Password-Eye-Toggle an 7 Stellen — `841134e`
+- BehaviorTab Label-Tausch (Rollen-Prompt oben, System-Prompt unten) — `8c02614`
+- Aktive-Tools-Sektion 3-Iteration-Redesign: descriptive Cards (A `43ef183`) + Smart-Defaults aus Rolle (B `e6d77a1`) + Live-Weiterleitung-Card (C `7046366`)
+- **Stripe Tax-ID 400 gefixt** — `customer_update.name='auto'` für Bezahlung — `f237efa`
+- `Caddyfile /favicon.ico → 301 /icon.svg` — `a5b2b45`
+- **Daily-Morning-Briefing-Routine** auf claude.ai/code/routines, täglich 8:00 Berlin, postet als GitHub-Issue auf voice-agent-phonbot. Erste Ausführung morgen.
+- **Agency-Plan-Comp** für info@mindrails.de — direct-DB upgrade auf 2400 min / 10 Agents / 10 Numbers, kein Stripe-Charge.
+
+**Methodik-Erkenntnisse:**
+- Persona-Stress-Test ist jetzt wiederverwendbares Tool (`/tmp/persona-stress.mjs` in API-Container, ~€0.05/Run). Workflow: Echt-Beschwerde → Persona reproduziert → Prompt-Fix → Re-Test → Verify-PASS.
+- `caddy reload` greift NICHT bei bind-mounted-`:ro`-Caddyfile + sed-Edit (neuer inode → Mount stale) — full restart nötig. Bei künftigen Caddy-Edits beachten.
+
+**Offen (R20-Polish):**
+- [ ] Live-Test der Behavior-Tab-Card-Redesigns + Smart-Defaults-Banner durch echten Demo-Run
+- [ ] Sentry-MCP-Output der ersten Routine-Iteration prüfen, ggf. Prompt verfeinern
+- [ ] Mobile/Tablet-Check der `grid sm:grid-cols-2 lg:grid-cols-4` Tool-Cards-Anordnung
+
 ### 2026-05-01 — DSGVO-Compliance-Akte komplett + Prod-Deploy + Supabase-Switch + UG-Klarstellung
 Siehe [[Daily/2026-05-01]].
 
