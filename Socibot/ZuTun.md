@@ -69,6 +69,15 @@ MVP implementiert (2026-04-30). Ab 5 echten Approves aktiv.
 
 **Bekannte Einschränkung:** Tag-only-Matching (persona + platform) ist schwächer als Embeddings bei großem Pool — aber MVP-tauglich bis ~100 Samples.
 
+## 8. W3-Ads.2 Follow-up — Offene Risiken
+
+W3-Ads.2 (Performance-Reports + Spend-Polling) ist implementiert (2026-04-30). Verbleibende Risiken:
+
+1. **Meta Rate-Limits bei vielen aktiven Boosts**: `poll_all_active_boosts()` iteriert linear alle `pending`/`active` Boosts. Bei >50 aktiven Boosts pro User-Pool können 4× täglich die 200-calls/hour-Grenze erreicht werden. Fix: Batch-Deduplication (nur Boosts pollen die `last_polled_at` > 6h alt) + exponentielles Backoff bei 429.
+2. **Kein Webhook-Support**: Meta kann ad-status-Änderungen (rejected, completed) aktiv pushen. Aktuell nur polling — Status-Updates haben max. 6h Verzögerung. Für W3-Ads.3: Meta Webhook-Endpoint `/ads/webhook` mit Hub-Verification.
+3. **Insights-API-Latenz**: Meta Insights haben 15-60min Reporting-Delay — `last_polled_at` ist korrekt, aber User sieht keine Realtime-Daten. Hinweis im Template wäre hilfreich.
+4. **`impressions_actual`/`clicks_actual`/`ctr_actual` in `boost_post()`-Records fehlen**: `boost_post()` initialisiert Records nur mit `spend_actual=0.0` und `reach_actual=0` — neue Felder werden erst nach erstem Poll geschrieben. Template-Check `boost.clicks_actual is defined` fängt das ab, aber `get_boost_status()` gibt None für diese Felder zurück (kein KeyError, aber Default-0-Anzeige bis erstem Poll).
+
 ## 7. Test-Run Video Engine v4.0
 
 Smoke-Test der gesamten Video-Pipeline: Prompt → Generation → Upload → Post. Steht seit 2026-04-18 aus. Unabhängig von Eval-Framework.
@@ -92,6 +101,7 @@ Nach Review:
 
 ## Narrative
 
+- **2026-04-30 (W3-Ads.2)**: Performance-Reports + Spend-Polling implementiert — `update_boost_metrics` (Mock-deterministisch + echter Meta-Insights-API), `poll_all_active_boosts` (6h-Cron), `get_boost_metrics`, `get_user_total_spend` (mit Monatsfilter). Neuer Job `bot/jobs/ads_metrics_polling.py`, Scheduler 6h, Routes `/ads/detail` + `/ads/refresh`, Templates ads.html (Spend/Reach-Spalten, Total-Spend-Karte) + ads_detail.html (neu). 9/9 neue Tests grün, 39/39 bestehende grün. Verbleibende Risiken: Meta Rate-Limits bei Boost-Skalierung, kein Webhook-Support, 15-60min Insights-Delay. → [[Daily/2026-04-30]]
 - **2026-04-30 (C-03)**: C-03 vollständig implementiert — `skip_layer2`-Param in `compliance_service` + Route-Forwarding, DSGVO-Opt-Out-Toggle in `qualitaet.html` + neue Route `/einstellungen/qualitaet/skip-layer2`, Pflicht-Checkboxen (Anthropic-Consent + §203) in `/register` + `auth.py`, `update_fields()` in `user_service`, Anthropic-Sub-AVV in `datenschutz.html` + `DSGVO_NOTES.md`. 52/52 Tests grün. Persona-A-Hard-Block (Anwalt/Arzt) aufgehoben. Kein Commit/Push. → [[Daily/2026-04-30]]
 - **2026-04-30 (final)**: 19 commits done. **Wellen heute**: Welle 0 (Phase-1.1-Close, 9 cluster commits f1c3d72..f8666c8), W0.6 (Compliance-v2 + Stabilisierung, b6bbca1), W0.75 (API-Key-Frei-Sweep, e0b35f3), W0.5 (Eval-Framework Integration, c60e7bb), W0.5b (Codex-Quick-Fixes, da07009), W1.5 (Pattern-Refresh, 3a6562b). 165 Tests grün, 0 skipped. **Codex-Verdikt**: Foundation solide, vor W2 noch W1.6 + C-03 nötig. Master 19 ahead, kein Push. → [[Daily/2026-04-30]]
 - 2026-04-30 (nacht): W0.5 Track 4 (Gold-Set + Baseline-Tools) implementiert — `tools/eval/generate_gold_set.py` (250 Cases, append-only JSONL), `tools/eval/run_baseline.py` (BaselineSnapshot, Aggregation per Persona/Platform/Dimension), `tools/eval/compare_baseline.py` (CI-Block bei Persona-Regression). 31/31 Tests grün. Alle 4 Tracks fertig. Integration-Step ausstehend. → [[Daily/2026-04-30]]
