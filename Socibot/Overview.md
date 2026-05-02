@@ -35,8 +35,10 @@ Repo: `Hansweier/social-media-saas` (Branch: `master`).
 | W2 | `5c5ae10` | Tier-Backend: Hook+Body-Split (Premium) + Self-Critique (Maximum) + UI |
 | C-03 | `5608f9e` | DSGVO: skip_layer2-Opt-Out + Anthropic-AVV + Onboarding-Pflicht-Checkboxen |
 | Codex-P0/P1-Fixes | `4658496` | skip_layer2 server-side enforced, Tier-Merge, Re-Consent-Gate, Regen via TierPipeline |
+| W3-Ads.1 (Beta) | `0cd447d` | Meta Boost-Post-Beta — feature-flagged ADS_BETA_ENABLED. ads_service + 5 Persona-Ads-Pattern-Files + is_ad-Compliance-Verschärfung + UI |
+| W3 Voice-Few-Shot | `5788038` | Lerneffekt-MVP — Approved Posts als Few-Shot in Generation-Prompt, Decay 30d, Downgrade bei späterem Reject |
 
-**Alle Codex-Findings erledigt — Persona-A-Beta-Launch bedingt tauglich.** Siehe [[Socibot/Codex-Findings-2026-04-30]] für Foundation-Findings.
+**25 Commits ahead. 317 Tests grün. Alle Codex-Findings erledigt — Persona-A-Beta-Launch bedingt tauglich.** Siehe [[Socibot/Codex-Findings-2026-04-30]] + [[Socibot/kanban/13-ads-beta]].
 
 ## Aktive Themen
 
