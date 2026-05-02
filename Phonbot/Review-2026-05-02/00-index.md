@@ -7,6 +7,9 @@ Verifikation:
 - `pnpm.cmd --filter @vas/web typecheck`: bestanden.
 - `pnpm.cmd --filter @vas/shared typecheck`: bestanden.
 - `pnpm.cmd --filter @vas/voice-core typecheck`: bestanden.
+- `pnpm.cmd --filter @vas/shared test -- --run --pool=threads`: bestanden, 3/3 Tests.
+- `pnpm.cmd --filter @vas/api test -- --run --pool=threads`: fehlgeschlagen, 140/142 Tests bestanden; 2 Failures in `src/__tests__/auth-flow.test.ts` erwarten 201 fuer Register, erhalten aber 400. Testlog meldet zugleich `TURNSTILE_SECRET_KEY not set in production`, daher als Verifikations-/Env-Anomalie dokumentiert und nicht ohne weitere Pruefung als Finding gewertet.
+- `@vas/web`: kein `test`-Script in `apps/web/package.json`, daher nur Typecheck ausgefuehrt.
 
 Ergebnis:
 - 8 bestaetigte Bug-/Risk-Findings mit Code-Beleg.
