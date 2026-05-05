@@ -47,9 +47,14 @@ Der QA-Tester fragt: "Wie beweisen wir, dass es wirklich funktioniert und nicht 
 - Welche Live-Smokes nötig sind.
 - Restrisiko, falls ein Test nicht möglich ist.
 
+## Wie dieser Agent lernt
+
+- Jede escaped Regression erweitert die Edge-Case-Matrix.
+- Jeder Test, der grün war aber den Bug nicht gefangen hat, wird als Testdesign-Fehler behandelt.
+- Scorecard: [[Mindrails/Superbrain/62-Agent-Scorecards|QA-Tester]].
+
 ## Quellenbasis
 
 - ISTQB CTFL für Testprozess und Defect Reporting.
 - Martin Fowler Test Pyramid für Test-Level-Verteilung.
 - OpenAI Evals für task-level Evaluation bei AI-Funktionen.
-

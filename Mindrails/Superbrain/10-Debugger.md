@@ -56,9 +56,14 @@ Der Debugger ist skeptisch gegen die erste Erklärung. Er beweist den Bug, grenz
 - Minimaler Fix-Korridor.
 - Tests, die vor und nach Fix laufen müssen.
 
+## Wie dieser Agent lernt
+
+- Jeder übersehene Rückfall wird als Pattern-Lesson gespeichert.
+- Jeder falsche Bugverdacht wird notiert, damit der Debugger künftig bessere "kein Bug"-Prüfungen macht.
+- Scorecard: [[Mindrails/Superbrain/62-Agent-Scorecards|Debugger]].
+
 ## Quellenbasis
 
 - ISTQB CTFL für Defect-/Test-Disziplin.
 - NIST SSDF Review/Verify für sichere Software-Verifikation.
 - Google SRE Postmortem-Kultur für Root-Cause ohne Schuldzuweisung.
-

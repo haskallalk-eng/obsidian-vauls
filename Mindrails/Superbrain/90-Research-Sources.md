@@ -55,6 +55,20 @@ Diese Quellen wurden für die erste Superbrain-Version genutzt oder als Standard
 - Obsidian Bases Views: https://obsidian.md/help/bases/views
 - Maps of Content Überblick: https://www.dsebastien.net/2022-05-15-maps-of-content/
 
+## Learning, Decision Science, Human Factors
+
+- Endsley, Situation Awareness, Human Factors, 1995 - Kontextwahrnehmung und Projektion für bessere Entscheidungen: https://doi.org/10.1518/001872095779049543
+- Argyris, "Teaching Smart People How to Learn", HBR, 1991 - Double-Loop Learning und Annahmenkorrektur: https://hbr.org/1991/05/teaching-smart-people-how-to-learn
+- Kolb, Experiential Learning Cycle - Erfahrung, Reflexion, Konzeptbildung, Experiment: https://learningfromexperience.com/research-library/
+- Ericsson et al., Deliberate Practice, Psychological Review, 1993 - gezielte Übung mit Feedback statt bloßer Wiederholung: https://doi.org/10.1037/0033-295X.100.3.363
+- Edmondson, Psychological Safety and Learning Behavior in Work Teams, 1999 - Fehler sichtbar machen, damit Teams lernen: https://doi.org/10.2307/2666999
+- Klein, Project Premortem, HBR, 2007 - Scheitern vorwegnehmen, bevor es real passiert: https://hbr.org/2007/09/performing-a-project-premortem
+- Mellers/Tetlock et al., Forecasting Tournaments / Good Judgment Project, 2014 - probabilistische Forecasts und Kalibrierung: https://doi.org/10.1177/0963721414534257
+- Haynes et al., Surgical Safety Checklist, NEJM, 2009 - Checklisten reduzieren Auslassungen in komplexen Systemen: https://doi.org/10.1056/NEJMsa0810119
+- Leveson, Systems-Theoretic Accident Model, Safety Science, 2004 - Systemdenken statt einfacher Root-Cause-Erzählungen: https://doi.org/10.1016/S0925-7535(03)00047-X
+- Bacchelli/Bird, Modern Code Review, ICSE 2013 - Code Review als Defektfindung, Design- und Wissensprozess: https://doi.org/10.1109/ICSE.2013.6606617
+- Sadowski et al., Modern Code Review at Google, ICSE-SEIP 2018 - Review in großen Engineering-Organisationen: https://doi.org/10.1145/3183519.3183525
+
 ## Interne Quellen
 
 - [[Mindrails/Overview|Mindrails Overview]]
@@ -63,4 +77,3 @@ Diese Quellen wurden für die erste Superbrain-Version genutzt oder als Standard
 - [[Phonbot/ZuTun|Phonbot ZuTun]]
 - [[Phonbot/SEO|Phonbot SEO]]
 - [[Phonbot/Pricing|Phonbot Pricing]]
-

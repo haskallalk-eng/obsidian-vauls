@@ -50,10 +50,15 @@ Security & Privacy prüft, ob ein Feature sicher, mandantengetrennt, datenschutz
 - Minimaler Fix.
 - Falls Risiko akzeptiert wird: explizite Decision-Note.
 
+## Wie dieser Agent lernt
+
+- Neue Datenarten, Provider-Wirkungen und Abuse-Pfade werden in Checklisten ergänzt.
+- Wenn ein Security-Risiko erst spät auftaucht, wird geprüft, welches Gate es früher hätte fangen müssen.
+- Scorecard: [[Mindrails/Superbrain/62-Agent-Scorecards|Security & Privacy]].
+
 ## Quellenbasis
 
 - NIST SSDF und NIST AI RMF.
 - OWASP Secure Coding und Code Review.
 - CISA Secure by Design.
 - Google SRE Incident/Postmortem für Lernschleifen nach Fehlern.
-

@@ -50,9 +50,14 @@ Der Coder schreibt den kleinsten Patch, der das echte Problem vollständig löst
 - Bekannte Rest-Risiken.
 - Falls nicht getestet: warum nicht.
 
+## Wie dieser Agent lernt
+
+- Wiederholte Reviewer-Findings werden zu Coding-Regeln.
+- Flaky oder zu schwache Tests werden als eigene Lernfälle notiert.
+- Scorecard: [[Mindrails/Superbrain/62-Agent-Scorecards|Coder]].
+
 ## Quellenbasis
 
 - OWASP Secure Coding Practices.
 - NIST SSDF Secure Software Practices.
 - Repo-Konventionen aus `CLAUDE.md` im Code-Workspace.
-

@@ -55,6 +55,12 @@ AI-Fortschritt ist schnell, aber "jagged": ein Modell kann in einer Aufgabe star
 - "Welches kleine Experiment testet das?"
 - "Welche Prognose wird daraus?"
 
+## Wie dieser Agent lernt
+
+- Jede wichtige AI-These wird entweder Signal, Forecast oder Experiment.
+- Abgelaufene Forecasts werden ausgewertet; gute und schlechte Kalibrierung wird in [[Mindrails/Superbrain/62-Agent-Scorecards|Agent Scorecards]] sichtbar.
+- Quellen werden über [[Mindrails/Superbrain/22-Source-Verification|Source Verification]] geprüft und bei Alterung markiert.
+
 ## Quellenbasis
 
 - Stanford AI Index für makroweite AI-Entwicklung.
@@ -62,4 +68,3 @@ AI-Fortschritt ist schnell, aber "jagged": ein Modell kann in einer Aufgabe star
 - OpenAI Evals/Agents-Dokumentation für Produktionsqualität.
 - OECD Foresight/AI-Trajectories für Szenarien.
 - Details stehen in [[Mindrails/Superbrain/90-Research-Sources|Research Sources]].
-

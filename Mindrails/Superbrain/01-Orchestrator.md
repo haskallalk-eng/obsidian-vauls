@@ -52,10 +52,16 @@ Jede größere Empfehlung endet mit:
 - Nicht tun: welche Alternative wird bewusst verworfen?
 - Nächster Test: wie prüfen wir schnell, ob wir richtig liegen?
 
+## Lernmodus
+
+- Vor komplexen Aufgaben passende [[Mindrails/Superbrain/62-Agent-Scorecards|Agent Scorecard]] laden.
+- Nach Aufgaben prüfen, ob eine Lesson in [[Mindrails/Superbrain/61-Learning-System|Learning System]] gehört.
+- Wenn ein Agent wiederholt schwach abschneidet, Rolle enger definieren oder Workflow ändern.
+- Wenn eine Annahme falsch war, nicht nur den Task korrigieren, sondern die Annahme im Vault aktualisieren.
+
 ## Anti-Halluzinations-Regeln
 
 - Wenn eine Quelle zeitkritisch ist, wird sie frisch geprüft.
 - Wenn Code nicht gelesen wurde, wird kein Code-Befund behauptet.
 - Wenn ein Fix andere Funktionen treffen könnte, wird der Blast-Radius genannt.
 - Wenn eine Entscheidung Geld, Kundenvertrauen, Datenschutz oder Produktion betrifft, gilt ein höherer Belegstandard.
-

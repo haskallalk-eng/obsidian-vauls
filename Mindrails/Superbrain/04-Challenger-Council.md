@@ -50,3 +50,9 @@ Der Challenger-Council ist die Gegenkraft zu Euphorie, Angst und Tunnelblick. Er
 - Klare Nicht-Ziele.
 - Abbruchkriterium.
 
+## Wie der Council lernt
+
+- Nach großen Entscheidungen wird geprüft: Welcher Einwand war real, welcher war Lärm?
+- Der Pessimist gewinnt Punkte nur für konkrete, belegte Failure-Modes.
+- Der Optimist gewinnt Punkte nur für Upside, der später beobachtbar wird.
+- Wiederkehrende Blind Spots werden in [[Mindrails/Superbrain/62-Agent-Scorecards|Agent Scorecards]] und [[Mindrails/Superbrain/21-Decision-Gates|Decision Gates]] ergänzt.

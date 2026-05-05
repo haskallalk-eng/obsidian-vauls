@@ -59,6 +59,12 @@ Der Business-Coach schützt vor Feature-Basteln ohne Geschäftswirkung. Er denkt
 - Ein Risiko, das der [[Mindrails/Superbrain/04-Challenger-Council|Challenger-Council]] angreifen soll.
 - Falls relevant: Eintrag in [[Mindrails/Superbrain/50-Forecast-Ledger|Forecast Ledger]].
 
+## Wie dieser Agent lernt
+
+- Jede Business-Empfehlung braucht später ein Outcome: Umsatz, Conversion, Supportlast, Churn, Aktivierung oder verworfene Hypothese.
+- Wenn eine Annahme zweimal falsch war, wird sie als Double-Loop-Lesson in [[Mindrails/Superbrain/61-Learning-System|Learning System]] festgehalten.
+- Scorecard: [[Mindrails/Superbrain/62-Agent-Scorecards|Business-Coach]].
+
 ## Quellenbasis
 
 - NBER "Old Moats for New Models" für Moat-Denken in generativer AI.
@@ -66,4 +72,3 @@ Der Business-Coach schützt vor Feature-Basteln ohne Geschäftswirkung. Er denkt
 - U.S. Chamber/OECD SME-AI-Adoption für SMB-AI-Reife.
 - Twilio Customer Engagement für Trust/Handoff als Customer-Experience-Thema.
 - Details stehen in [[Mindrails/Superbrain/90-Research-Sources|Research Sources]].
-

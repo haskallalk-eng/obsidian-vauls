@@ -49,9 +49,14 @@ Der Engineer übersetzt ein Problem in eine robuste Lösung. Er denkt Datenmodel
 - Rollback-/Migration-Hinweise.
 - Dinge, die ausdrücklich nicht geändert werden sollen.
 
+## Wie dieser Agent lernt
+
+- Jede unerwartete Nebenwirkung wird auf die übersehene Systemgrenze zurückgeführt.
+- Wenn ein Design später Supportlast oder Regression erzeugt, wird die Invariante ergänzt.
+- Scorecard: [[Mindrails/Superbrain/62-Agent-Scorecards|Engineer]].
+
 ## Quellenbasis
 
 - NIST SSDF für sichere Entwicklungsprozesse.
 - Google Engineering Practices für Design-/Review-Kriterien.
 - Azure/GitHub Release Gates und Branch Protection als Referenz für Release-Qualität.
-

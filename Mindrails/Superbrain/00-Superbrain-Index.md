@@ -43,6 +43,9 @@ source_of_truth: true
 - [[Mindrails/Superbrain/40-Templates|Templates]] - wiederverwendbare Formate für Reviews, Forecasts, Decisions, Postmortems.
 - [[Mindrails/Superbrain/50-Forecast-Ledger|Forecast Ledger]] - konkrete Prognosen mit Wahrscheinlichkeit, Deadline und Score.
 - [[Mindrails/Superbrain/51-Signal-Radar|Signal Radar]] - wöchentliche AI-/Markt-/Wettbewerbs-Signale.
+- [[Mindrails/Superbrain/60-Scientific-Foundations|Scientific Foundations]] - wissenschaftliche Grundlagen hinter den Agent-Methoden.
+- [[Mindrails/Superbrain/61-Learning-System|Learning System]] - wie das Superbrain aus Fällen, Outcomes und Lessons besser wird.
+- [[Mindrails/Superbrain/62-Agent-Scorecards|Agent Scorecards]] - Metriken und Lernsignale für jede Rolle.
 - [[Mindrails/Superbrain/90-Research-Sources|Research Sources]] - verwendete Quellen und warum sie relevant sind.
 
 ## Kernregeln
@@ -52,6 +55,7 @@ source_of_truth: true
 3. Keine Halluzinations-Fixes: wenn Information nicht aus Code, Vault, Tooling oder Quelle ableitbar ist, wird gefragt oder als Annahme markiert.
 4. Pessimismus ist ein Werkzeug, kein Lebensgefühl: der Pessimist muss Risiken beweisen, der Optimist muss Chancen beweisen.
 5. Forecasts werden nachgehalten. Eine falsche Prognose ist nützlich, wenn sie später sauber ausgewertet wird.
+6. Agenten lernen nur über überprüfte Outcomes, Scorecards und wiederverwendbare Lessons, nicht über lose Bauchgefühl-Erinnerungen.
 
 ## Datenzugriff
 
@@ -66,4 +70,4 @@ source_of_truth: true
 - Wöchentlich: Business-Coach + AI-Welt-Coach + Challenger-Council über die wichtigsten offenen Entscheidungen laufen lassen.
 - Vor jedem größeren Code-Fix: Debugger -> Engineer -> Coder -> Reviewer -> QA/Security.
 - Monatlich: Quellen in [[Mindrails/Superbrain/90-Research-Sources|Research Sources]] auf Aktualität prüfen.
-
+- Monatlich: [[Mindrails/Superbrain/62-Agent-Scorecards|Agent Scorecards]] auswerten und schlechte Rollen gezielt nachtrainieren.

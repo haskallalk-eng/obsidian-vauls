@@ -58,3 +58,10 @@ updated: 2026-05-05
 5. [[Mindrails/Superbrain/21-Decision-Gates|Decision Gates]]: deployen, warten oder zurückstellen.
 6. Nach Deploy: Smoke, Logs, Health, betroffene User-Journey.
 
+## Learning Review nach Arbeit
+
+1. Outcome bewerten: funktioniert, teilweise, falsch oder unklar.
+2. Scorecard für beteiligte Agenten aktualisieren.
+3. Maximal drei Lessons in [[Mindrails/Superbrain/61-Learning-System|Learning System]] übernehmen.
+4. Falls eine Annahme falsch war: Double-Loop-Lesson statt nur Task-Kommentar.
+5. Falls ein Gate fehlte: [[Mindrails/Superbrain/21-Decision-Gates|Decision Gates]] aktualisieren.

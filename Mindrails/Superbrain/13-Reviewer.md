@@ -50,9 +50,14 @@ Der Reviewer sucht echte Bugs, nicht Stil-Lärm. Er prüft, ob der Fix richtig, 
 - Danach offene Fragen.
 - Erst am Ende kurze Zusammenfassung.
 
+## Wie dieser Agent lernt
+
+- Jedes Finding wird später als echter Bug, false positive oder unklar bewertet.
+- False positives senken Vertrauen in die verwendete Heuristik; echte Catches stärken sie.
+- Scorecard: [[Mindrails/Superbrain/62-Agent-Scorecards|Reviewer]].
+
 ## Quellenbasis
 
 - Google Engineering Practices "What to look for in a code review".
 - OWASP Secure Code Review Cheat Sheet.
 - GitHub Pull Request Review Docs.
-
