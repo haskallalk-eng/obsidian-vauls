@@ -25,6 +25,8 @@ source_of_truth: true
 - [[Mindrails/Superbrain/04-Challenger-Council|Challenger-Council]] - Realist, Pessimist, Optimist, Risiko-Anwalt und Kunden-Anwalt.
 - [[Mindrails/Superbrain/05-Team-Operating-System|Team Operating System]] - wie alle Rollen als Team zusammenarbeiten.
 - [[Mindrails/Superbrain/06-Task-Routing-Matrix|Task Routing Matrix]] - welche Rollen bei welchem Auftrag führen.
+- [[Mindrails/Superbrain/07-Critique-Band|Kritik-Bande]] - sechs harte, aber gezähmte Kritik-Ansichten.
+- [[Mindrails/Superbrain/32-SEO-Squad|SEO Squad]] - technische, inhaltliche, lokale, programmatic und AI-Search SEO-Rollen.
 - [[Mindrails/Superbrain/23-Phonbot-Context-Map|Phonbot Context Map]] - Einstieg in das konkrete Produktwissen.
 
 ## Ausführungs-Gehirne
@@ -35,6 +37,19 @@ source_of_truth: true
 - [[Mindrails/Superbrain/13-Reviewer|Reviewer]] - sucht echte Regressionsrisiken und falsche Annahmen.
 - [[Mindrails/Superbrain/14-QA-Tester|QA-Tester]] - baut Verifikation, Regression und Edge-Case-Suiten.
 - [[Mindrails/Superbrain/15-Security-Privacy|Security & Privacy]] - prüft Trust Boundaries, DSGVO, Secrets, Abuse und sichere Defaults.
+- [[Mindrails/Superbrain/16-UX-Agent|UX-Agent]], [[Mindrails/Superbrain/17-UI-Agent|UI-Agent]], [[Mindrails/Superbrain/18-Frontend-Agent|Frontend-Agent]], [[Mindrails/Superbrain/19-Backend-Agent|Backend-Agent]], [[Mindrails/Superbrain/26-Database-Agent|Database-Agent]] - spezialisierte Kritik- und Build-Ansichten.
+- [[Mindrails/Superbrain/27-Overall-System-Agent|Overall-System-Agent]], [[Mindrails/Superbrain/28-Independent-Tester|Independent Tester]], [[Mindrails/Superbrain/29-Dumb-Tester|Dumb-Tester]], [[Mindrails/Superbrain/31-UX-Optimizer|UX-Optimierer]] - End-to-End-Realitätsprüfung und UX-Verbesserung.
+
+## SEO-Gehirne
+
+- [[Mindrails/Superbrain/33-Technical-SEO-Crawl-Index-Agent|Technical SEO: Crawl & Index]] - robots, sitemap, canonical, hreflang, redirects, indexability.
+- [[Mindrails/Superbrain/34-SEO-Performance-CWV-Agent|Technical SEO: Performance & Core Web Vitals]] - LCP, INP, CLS, mobile speed, assets.
+- [[Mindrails/Superbrain/35-Structured-Data-Agent|Structured Data Agent]] - JSON-LD, Schema.org, Rich Results, Entity Graph.
+- [[Mindrails/Superbrain/36-Content-Intent-Agent|Content & Intent Agent]] - Suchintention, hilfreicher Content, Snippets, E-E-A-T-Signale.
+- [[Mindrails/Superbrain/37-Local-SEO-Agent|Local SEO Agent]] - lokale SMB-/Friseur-Intention, NAP, lokale Trust-Signale.
+- [[Mindrails/Superbrain/38-Programmatic-SEO-Agent|Programmatic SEO Agent]] - Branchen-/Clusterseiten, Duplicate-/Thin-Content-Risiko, Generatoren.
+- [[Mindrails/Superbrain/39-AI-Search-LLM-SEO-Agent|AI Search & LLM SEO Agent]] - `llms.txt`, AI-Crawler, Answer Engines, Entity-Klarheit.
+- [[Mindrails/Superbrain/41-SEO-Measurement-Agent|SEO Measurement Agent]] - Search Console, Bing, IndexNow, CTR, Conversion, Experimente.
 
 ## Betriebssystem
 
