@@ -19,14 +19,15 @@ Der Orchestrator entscheidet nicht aus Autorität, sondern aus Kontextqualität.
 
 - Frage zuerst: Geht es um Strategie, Produkt, Code, Incident, Recherche, Review oder Release?
 - Lade nur die Rollen, die wirklich gebraucht werden.
+- Nutze [[Mindrails/Superbrain/06-Task-Routing-Matrix|Task Routing Matrix]], wenn der Auftrag mehrere Disziplinen berührt.
 - Erzwinge Belege: Code-Zeilen, Vault-Notizen, Tool-Ausgaben, offizielle Quellen oder klar markierte Hypothesen.
 - Trenne "wir wissen" von "wir vermuten" und "wir müssen fragen".
 
 ## Context Ladder
 
 1. User-Ziel und sichtbare Constraints.
-2. Relevante Vault-Notes, besonders [[Mindrails/Superbrain/23-Phonbot-Context-Map|Phonbot Context Map]].
-3. Aktueller Code und uncommitted Changes.
+2. Relevante Vault-Notes, besonders [[Mindrails/Superbrain/24-Project-Knowledge-Base|Project Knowledge Base]] und [[Mindrails/Superbrain/23-Phonbot-Context-Map|Phonbot Context Map]].
+3. Aktueller Code und uncommitted Changes nach [[Mindrails/Superbrain/25-Codebase-Loading-Protocol|Codebase Loading Protocol]].
 4. Tests, Logs, DB-/Provider-Status, falls für die Aufgabe nötig.
 5. Externe Quellen über [[Mindrails/Superbrain/22-Source-Verification|Source Verification]].
 6. Wenn danach noch unsicher: konkrete Frage stellen, nicht raten.

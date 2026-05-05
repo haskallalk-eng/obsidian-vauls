@@ -7,7 +7,7 @@ created: 2026-04-22
 
 # Claude — Skills & MCPs
 
-> Was Claude in diesem Setup _wirklich_ zur Verfügung hat und wann welches Tool sinnvoll ist. Gefiltert auf Mindrails-Workflows (Phonbot / Socibot / Kanzleibot + Obsidian-Vault). Rein technisch sind deutlich mehr Skills installiert — hier stehen die, die **im Alltag greifen**.
+> Was Claude in diesem Setup _wirklich_ zur Verfügung hat und wann welches Tool sinnvoll ist. Gefiltert auf Mindrails-Workflows (Phonbot / Socibot + Obsidian-Vault). Rein technisch sind deutlich mehr Skills installiert — hier stehen die, die **im Alltag greifen**.
 
 ## Schnell-Entscheidung
 
@@ -94,7 +94,7 @@ Generic React-Patterns für Mindrails-Projekte.
 Next.js App Router + Shadcn UI + Radix + Tailwind. Für neue Mindrails-Projekte (Phonbot ist Vite, nicht Next — nicht hier einsetzen).
 
 ### mindrally-nextjs-typescript-tailwindcss-supabase
-Full-Stack Next.js 14 + Supabase — für neue Projekte wie Kanzleibot Phase 2.
+Full-Stack Next.js 14 + Supabase — für neue Full-Stack-Projekte im Mindrails-Ökosystem.
 
 ### mindrally-tailwindcss
 Tailwind utility-first + responsive patterns. Passt zu Phonbot (Tailwind 4).
@@ -109,7 +109,7 @@ Metadata, Indexing, Core-Web-Vitals. Schon in chipy-design §15/16 teilweise por
 SSR, CSS / JS Perf. Überlappt mit react-patterns + chipy-design §15.
 
 ### claude-api
-**Trigger:** Imports `anthropic`/`@anthropic-ai/sdk`, Claude-API-Fragen, Managed Agents, Caching/Thinking/Compaction/Tool-Use tunen. **Enthält Prompt-Caching by default**. Für Phonbot aktuell nicht relevant (nutzt OpenAI), für Kanzleibot + Socibot eventuell.
+**Trigger:** Imports `anthropic`/`@anthropic-ai/sdk`, Claude-API-Fragen, Managed Agents, Caching/Thinking/Compaction/Tool-Use tunen. **Enthält Prompt-Caching by default**. Für Phonbot aktuell nicht relevant (nutzt OpenAI), für Socibot eventuell.
 
 ## 3. Dev-Workflow
 
@@ -270,7 +270,7 @@ Diese Memory-Rules feuern automatisch — **nicht** erst auf Anfrage warten:
 - ❌ **context7 / Web-Search statt Skill** wenn spezialisierter Skill existiert (z.B. `claude-api` für Anthropic-SDK-Fragen, nicht context7).
 - ❌ **Planlos Code schreiben** bei nicht-trivialen Features (→ superpowers-brainstorming + writing-plans).
 - ❌ **Eigene Prompts** für Claude-API-Apps ohne Prompt-Caching (→ `claude-api` Skill).
-- ❌ **chipy-design für Socibot / Kanzleibot / Kunden-Seiten** — ist Phonbot-spezifisch.
+- ❌ **chipy-design für Socibot / Kunden-Seiten** — ist Phonbot-spezifisch.
 - ❌ **landing-page für Phonbot-Branchen-Pages** — Gen-Script + chipy-design nutzen.
 - ❌ **unsere PLAYWRIGHT ohne info@mindrails.de Chrome-Profil**.
 - ❌ **statische Pages für User-facing-Auth-Flows** ohne security-dsgvo-reviewer-Pass.
@@ -281,7 +281,6 @@ Diese Memory-Rules feuern automatisch — **nicht** erst auf Anfrage warten:
 - [[Phonbot/Pricing|💶 Phonbot — Preisgestaltung]]
 - [[Phonbot/Overview|Phonbot Overview]]
 - [[Socibot/Overview|Socibot Overview]] — falls vorhanden
-- [[Kanzleibot/Overview|Kanzleibot Overview]] — falls vorhanden
 - Memory-Pointer: [reference_skills_catalog.md](../../.claude/projects/C--Users-pc105/memory/reference_skills_catalog.md)
 - Skill-Datei: [chipy-design SKILL.md](../../.claude/skills/chipy-design/SKILL.md)
 

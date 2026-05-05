@@ -19,7 +19,6 @@ contact: info@mindrails.de
 |---|---|---|---|
 | Phonbot | active, deployed (phonbot.de) | Voice-Agent SaaS (KI-Telefonagenten) | [[Phonbot/Overview\|Phonbot]] |
 | Socibot | active, **19 commits ahead** (2026-04-30, kein Push) | Social-Media-Bot mit DSGVO-Beratungsbranche-Fokus (Persona A) | [[Socibot/Overview\|Socibot]] |
-| Kanzleibot | active, im Aufbau | Rechtsanwalts-SaaS für DE-Kanzleien (ReFa-Augmentation, BRAO/DSGVO) | [[Kanzleibot/Overview\|Kanzleibot]] |
 
 ## Regeln für den Vault
 

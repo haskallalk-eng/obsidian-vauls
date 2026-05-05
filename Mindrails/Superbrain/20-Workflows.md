@@ -13,6 +13,14 @@ updated: 2026-05-05
 
 # Workflows
 
+## Team-Start
+
+1. [[Mindrails/Superbrain/01-Orchestrator|Orchestrator]] klärt Projekt, Ziel und Constraints.
+2. [[Mindrails/Superbrain/06-Task-Routing-Matrix|Task Routing Matrix]] bestimmt Lead und Pflichtrollen.
+3. [[Mindrails/Superbrain/24-Project-Knowledge-Base|Project Knowledge Base]] lädt Projektkontext.
+4. Bei Code: [[Mindrails/Superbrain/25-Codebase-Loading-Protocol|Codebase Loading Protocol]] ausführen.
+5. Team arbeitet im passenden Modus aus [[Mindrails/Superbrain/05-Team-Operating-System|Team Operating System]].
+
 ## Bugfix
 
 1. [[Mindrails/Superbrain/10-Debugger|Debugger]] beweist den Bug und grenzt ihn ein.

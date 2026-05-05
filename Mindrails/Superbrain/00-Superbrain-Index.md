@@ -23,6 +23,8 @@ source_of_truth: true
 - [[Mindrails/Superbrain/02-Business-Coach|Business-Coach]] - versteht Mindrails/Phonbot als Geschäft, sucht Umsatz, Fokus und Moat.
 - [[Mindrails/Superbrain/03-AI-Welt-Coach|AI-Welt-Coach]] - beobachtet die AI-Welt, macht Forecasts und übersetzt Trends in Produktentscheidungen.
 - [[Mindrails/Superbrain/04-Challenger-Council|Challenger-Council]] - Realist, Pessimist, Optimist, Risiko-Anwalt und Kunden-Anwalt.
+- [[Mindrails/Superbrain/05-Team-Operating-System|Team Operating System]] - wie alle Rollen als Team zusammenarbeiten.
+- [[Mindrails/Superbrain/06-Task-Routing-Matrix|Task Routing Matrix]] - welche Rollen bei welchem Auftrag führen.
 - [[Mindrails/Superbrain/23-Phonbot-Context-Map|Phonbot Context Map]] - Einstieg in das konkrete Produktwissen.
 
 ## Ausführungs-Gehirne
@@ -39,6 +41,8 @@ source_of_truth: true
 - [[Mindrails/Superbrain/20-Workflows|Workflows]] - Bugfix, Feature, Strategie, Incident, Release.
 - [[Mindrails/Superbrain/21-Decision-Gates|Decision Gates]] - Go/No-Go-Regeln für Code, Deploy, Produkt und Strategie.
 - [[Mindrails/Superbrain/22-Source-Verification|Source Verification]] - Quellenprüfung, Recency, Lateral Reading, Confidence.
+- [[Mindrails/Superbrain/24-Project-Knowledge-Base|Project Knowledge Base]] - aktueller Projektkontext zu Mindrails, Phonbot und Socibot.
+- [[Mindrails/Superbrain/25-Codebase-Loading-Protocol|Codebase Loading Protocol]] - wie das Team Code und Worktrees sicher lädt.
 - [[Mindrails/Superbrain/30-Handoffs|Agent Handoffs]] - saubere Input-/Output-Verträge zwischen Teil-Gehirnen.
 - [[Mindrails/Superbrain/40-Templates|Templates]] - wiederverwendbare Formate für Reviews, Forecasts, Decisions, Postmortems.
 - [[Mindrails/Superbrain/50-Forecast-Ledger|Forecast Ledger]] - konkrete Prognosen mit Wahrscheinlichkeit, Deadline und Score.
@@ -61,6 +65,7 @@ source_of_truth: true
 
 - Interner Kontext: [[Mindrails/Overview]], [[Phonbot/Overview]], [[Phonbot/Phonbot-Gesamtsystem]], [[Phonbot/ZuTun]], [[Phonbot/modules/Backend-Agents]], [[Phonbot/modules/Backend-Voice-Telephony]], [[Phonbot/modules/Backend-Billing-Usage]], [[Phonbot/modules/Backend-Comm-Scheduling]].
 - Code-Kontext: `C:\Users\pc105\.openclaw\workspace\voice-agent-saas`.
+- Projektwissen: [[Mindrails/Superbrain/24-Project-Knowledge-Base|Project Knowledge Base]] und [[Mindrails/Superbrain/25-Codebase-Loading-Protocol|Codebase Loading Protocol]] vor größeren Code-/Produktaufgaben laden.
 - Externe Recherche: offizielle Anbieter-Dokumentation, NIST/OWASP/OECD/Stanford/OpenAI/Google/GitHub, danach belastbare Marktquellen.
 - Produktion/SSH/Stripe/GitHub: nur wenn die konkrete Aufgabe es verlangt und der Zugriff verfügbar ist.
 
