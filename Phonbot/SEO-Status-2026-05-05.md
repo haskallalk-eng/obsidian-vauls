@@ -30,6 +30,17 @@ Score-Cap bleibt: Ohne echte Google Search Console/Bing-/Conversion-Daten maxima
 - Jahresrabatt ist nicht mehr pauschal 20 %, sondern ca. 15-18 % je nach Plan.
 - `llms.txt` nutzt Stand 5. Mai 2026 statt April 2026.
 
+## Automatisierter Blog
+
+- Neuer Generator: `scripts/gen-blog-pages.mjs`.
+- Strukturierte Brief-Quelle: `scripts/blog-posts.mjs`.
+- Blog-Hub: `https://phonbot.de/blog/`.
+- Startartikel:
+  - `https://phonbot.de/blog/ki-telefonassistent-friseur-terminbuchung/`
+  - `https://phonbot.de/blog/dsgvo-ki-telefonassistent-aufzeichnung/`
+  - `https://phonbot.de/blog/rufweiterleitung-ki-telefonnummer/`
+- Superhirn-Regel: Der Blog ist automatisiert generiert, aber nicht blind massenpubliziert. Jeder Artikel braucht Suchintent, Review-Feld, eigene Beispiele, FAQ, interne Links, BlogPosting-Schema und Audit-Gate.
+
 ## Neue Schutzregel
 
 `pnpm seo:audit` prueft jetzt zusaetzlich:
