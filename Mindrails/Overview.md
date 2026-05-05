@@ -34,6 +34,7 @@ contact: info@mindrails.de
 
 ## Meta
 
+- [[Mindrails/Superbrain/00-Superbrain-Index|Mindrails Superbrain]] — Strategie-, AI-, Review- und Engineering-Gehirn mit Forecasts, Signal-Radar und Agent-Rollen
 - [[Mindrails/Claude-Skills-und-MCPs|🤖 Claude — Skills & MCPs]] — welche Tools Claude zur Verfügung hat, wann welches greift, proaktiv-Regeln
 
 ## Verwandt
