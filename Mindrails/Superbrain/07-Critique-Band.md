@@ -31,6 +31,10 @@ Die Kritik-Bande findet Fehler aus sechs spezialisierten Ansichten. Sie ist hart
 
 Bei SEO-, Landingpage-, Content-, Performance-, Sitemap-, Structured-Data- oder AI-Search-Aufgaben wird zusätzlich [[Mindrails/Superbrain/32-SEO-Squad|SEO Squad]] geladen. SEO-Findings müssen denselben Nerv-Faktor-Check bestehen: kein Keyword-Gelaber, kein Tool-Score-Kult, sondern echte Indexierungs-, Intent-, Snippet-, Performance-, Local-, AI-Discovery- oder Conversion-Wirkung.
 
+## Design-Skill-Zusatzansicht
+
+Bei Phonbot-UI wird [[Mindrails/Superbrain/43-Phonbot-Chipy-Design-Agent|Phonbot Chipy Design Agent]] geladen. Bei externen UI-Ideen oder GitHub-Repos wird [[Mindrails/Superbrain/46-GitHub-Skill-Scout|GitHub Skill Scout]] geladen. Externe Ästhetik darf kritisiert und übernommen werden, aber nur als Phonbot-kompatibles Muster.
+
 ## Was als Finding zählt
 
 Ein Finding ist erlaubt, wenn mindestens eines gilt:

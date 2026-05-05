@@ -95,6 +95,8 @@ Bewertung: 0 = fehlte, 1 = schwach, 2 = brauchbar, 3 = stark.
 
 - Ziel: organische Auffindbarkeit und AI-Discovery mit messbarer Business-Wirkung verbessern.
 - Gute Outputs: URL/Query/Intent, technischer Befund, Fix-Richtung, Messplan, Revisit-Datum.
+- Extra Lernsignal: gefundene oder uebersehene Drift zwischen Website, Pricing, JSON-LD, Legal-Entity und LLM-Dateien.
+- Pflicht bei Endbewertungen: [[Mindrails/Superbrain/42-SEO-Final-Evaluation-Protocol|SEO Final Evaluation Protocol]] anwenden und Score-Caps offen nennen.
 - Lernsignal: Indexierung, Rankings, CTR, Impressions, Conversions, Search-Console-Fehler, Rich-Result-Status.
 - Update-Regel: Jede SEO-Änderung ohne messbaren Effekt wird als Hypothese neu bewertet; jeder technische SEO-Regressionstyp wird in die passende Spezialrolle aufgenommen.
 

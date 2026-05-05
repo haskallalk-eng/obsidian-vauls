@@ -9,6 +9,9 @@ status: code-basiert
 
 > Ist-Zustand basierend auf Code (`apps/web/`, `Caddyfile`). Jede Aussage mit Datei-Referenz.
 
+> [!warning] Historischer Snapshot
+> Diese Notiz ist ein SEO-Snapshot aus April 2026 und kann gegen Live-Seite, Code oder Pricing driften. Fuer finale Entscheidungen immer zuerst [[Mindrails/Superbrain/42-SEO-Final-Evaluation-Protocol|SEO Final Evaluation Protocol]] anwenden und Live-/Code-/Messdaten hoeher gewichten als diese Notiz.
+
 ## Executive Summary
 
 Phonbot hat ein **sehr weit entwickeltes Technical-SEO-Setup** — über dem, was man in diesem Produkt-Reifegrad erwarten würde. Schwerpunkte: deutschsprachige Long-Tail (Branchen × Funktion), AI/LLM-Discovery-Optimierung (`llms.txt`-Standard, explizite Bot-Allowlist), reiche strukturierte Daten (12-teiliger JSON-LD-Graph).

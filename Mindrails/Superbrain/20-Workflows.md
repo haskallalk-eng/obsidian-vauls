@@ -58,6 +58,15 @@ updated: 2026-05-05
 6. Je nach Seite: [[Mindrails/Superbrain/37-Local-SEO-Agent|Local]], [[Mindrails/Superbrain/38-Programmatic-SEO-Agent|Programmatic]], [[Mindrails/Superbrain/39-AI-Search-LLM-SEO-Agent|AI Search]].
 7. [[Mindrails/Superbrain/41-SEO-Measurement-Agent|Measurement]] definiert Baseline, Erfolgskriterium und Revisit.
 
+## Design Skill / GitHub Library
+
+1. [[Mindrails/Superbrain/48-Design-Skill-Squad|Design Skill Squad]] klärt: internes Skill nutzen oder externe Ressource scouten?
+2. Für Phonbot: [[Mindrails/Superbrain/43-Phonbot-Chipy-Design-Agent|Chipy Design Agent]] ist führend.
+3. [[Mindrails/Superbrain/46-GitHub-Skill-Scout|GitHub Skill Scout]] prüft Stars, Aktivität, Lizenz, Docs, Security, Bundle und Fit.
+4. [[Mindrails/Superbrain/47-Design-Library-Radar|Design Library Radar]] liefert Kandidaten, aber keine automatische Übernahme.
+5. [[Mindrails/Superbrain/17-UI-Agent|UI-Agent]] und [[Mindrails/Superbrain/16-UX-Agent|UX-Agent]] prüfen, ob das Ergebnis wirklich besser ist.
+6. Installation oder Dependency-Add nur mit User-Go.
+
 ## Customer Incident
 
 1. Symptom, Tenant, Zeitraum und Kundenaussage erfassen.

@@ -45,6 +45,7 @@ Das Superbrain ist ein Team, kein Chor aus Einzelmeinungen. Jede Aufgabe braucht
 | Compliance Cell | Security & Privacy | Business-Coach, Reviewer, Source Verification | DSGVO, BRAO, AI Act, Provider, PII. |
 | Growth Cell | Business-Coach | AI-Welt-Coach, Challenger-Council, QA | SEO, Landingpages, Funnel, Onboarding, Demo. |
 | SEO Cell | [[Mindrails/Superbrain/32-SEO-Squad|SEO Squad]] | Technical SEO, Content, Structured Data, Local, Programmatic, AI Search, Measurement | Rankings, Indexierung, Landingpages, Search/AI-Discovery, Core Web Vitals. |
+| Design Skill Cell | [[Mindrails/Superbrain/48-Design-Skill-Squad|Design Skill Squad]] | Chipy Design, Design Review, Asset Agent, GitHub Skill Scout, Design Library Radar | Phonbot-Designqualität, externe UI-Inspiration, Skill-Auswahl. |
 | Knowledge Cell | Orchestrator | Source Verification, Learning System, Scorecards | Vault, Projektwissen, Lessons, Templates. |
 
 ## Handoff-Regel

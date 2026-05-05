@@ -23,8 +23,11 @@ Diese Matrix sorgt dafür, dass das Team jede Aufgabe gemeinsam, aber nicht chao
 | "prüf/review/deep" | Reviewer | Debugger, Security, QA, Engineer | Findings zuerst, echte Bugs, File:Line. |
 | "plane" | Orchestrator | Business/Engineer/AI je nach Thema, Challenger | Plan, Risiken, Fragen, Stop/Go. |
 | "SEO", "Ranking", "Landingpage" | [[Mindrails/Superbrain/32-SEO-Squad|SEO Squad]] | Business-Coach, Content, Technical SEO, Structured Data, Measurement | SEO-Audit, Prioritäten, Umsetzung/Tests. |
+| "finale SEO-Bewertung", "SEO-Stand", "ist SEO fertig" | [[Mindrails/Superbrain/42-SEO-Final-Evaluation-Protocol|SEO Final Evaluation Protocol]] | SEO Squad, Measurement, AI Search, Structured Data, Content | Endscore, Score-Caps, Belege, Restrisiko, naechster Hebel. |
 | "Core Web Vitals", "Sitemap", "robots", "canonical", "structured data" | passende Technical-SEO-Rolle | Frontend, Backend, Measurement | technisches SEO-Finding mit Datei/URL/Check. |
 | "AI Search", "LLM SEO", "llms.txt", "AI Overview" | [[Mindrails/Superbrain/39-AI-Search-LLM-SEO-Agent|AI Search & LLM SEO Agent]] | Content, Structured Data, Source Verification | AI-Discovery-Check, Entity- und Quellenklarheit. |
+| "Design Skill", "chipy", "look like Phonbot", "UI schöner" | [[Mindrails/Superbrain/48-Design-Skill-Squad|Design Skill Squad]] | Chipy Design, UI, UX, Frontend | Design-System-konforme UI-Lösung. |
+| "GitHub Skills", "gute UI Library", "hoch bewertet" | [[Mindrails/Superbrain/46-GitHub-Skill-Scout|GitHub Skill Scout]] | Design Library Radar, Source Verification, Security | Repo-/Skill-Evaluation mit Gate. |
 | "Prompt", "Agent", "Retell", "Stimme" | AI-Welt-Coach | Engineer, QA, Business, Security | Prompt-/Runtime-Plan, Evals, Deploy-Wirkung. |
 | "Kalender", "Kunden", "Termin" | Engineer | Debugger, QA, Business, Coder | Datenfluss, UX, API/DB/Prompt-Wirkung. |
 | "Billing", "Stripe", "Minuten" | Engineer | Debugger, Security, Reviewer, QA | Transaktions-/Race-/UI-Prüfung. |

@@ -2,6 +2,10 @@
 title: Mindrails Superbrain
 type: moc
 status: active
+aliases:
+  - Superhirn
+  - Mindrails Superhirn
+  - Superbrain
 tags:
   - mindrails
   - superbrain
@@ -27,6 +31,7 @@ source_of_truth: true
 - [[Mindrails/Superbrain/06-Task-Routing-Matrix|Task Routing Matrix]] - welche Rollen bei welchem Auftrag führen.
 - [[Mindrails/Superbrain/07-Critique-Band|Kritik-Bande]] - sechs harte, aber gezähmte Kritik-Ansichten.
 - [[Mindrails/Superbrain/32-SEO-Squad|SEO Squad]] - technische, inhaltliche, lokale, programmatic und AI-Search SEO-Rollen.
+- [[Mindrails/Superbrain/48-Design-Skill-Squad|Design Skill Squad]] - unsere Design-Skills plus geprüfte GitHub-/Open-Source-Ressourcen.
 - [[Mindrails/Superbrain/23-Phonbot-Context-Map|Phonbot Context Map]] - Einstieg in das konkrete Produktwissen.
 
 ## Ausführungs-Gehirne
@@ -50,6 +55,15 @@ source_of_truth: true
 - [[Mindrails/Superbrain/38-Programmatic-SEO-Agent|Programmatic SEO Agent]] - Branchen-/Clusterseiten, Duplicate-/Thin-Content-Risiko, Generatoren.
 - [[Mindrails/Superbrain/39-AI-Search-LLM-SEO-Agent|AI Search & LLM SEO Agent]] - `llms.txt`, AI-Crawler, Answer Engines, Entity-Klarheit.
 - [[Mindrails/Superbrain/41-SEO-Measurement-Agent|SEO Measurement Agent]] - Search Console, Bing, IndexNow, CTR, Conversion, Experimente.
+- [[Mindrails/Superbrain/42-SEO-Final-Evaluation-Protocol|SEO Final Evaluation Protocol]] - macht aus Teilchecks eine belastbare finale SEO-Bewertung.
+
+## Design-/Skill-Gehirne
+
+- [[Mindrails/Superbrain/43-Phonbot-Chipy-Design-Agent|Phonbot Chipy Design Agent]] - nutzt `chipy-design` und schützt die Phonbot-DNA.
+- [[Mindrails/Superbrain/44-Design-Review-Skill-Agent|Design Review Skill Agent]] - nutzt `design-review` und `ui-ux-pro-max`.
+- [[Mindrails/Superbrain/45-Design-Asset-Skill-Agent|Design Asset Skill Agent]] - nutzt `color-palette`, `icon-set-generator`, `favicon-gen`, `ai-image-generator`.
+- [[Mindrails/Superbrain/46-GitHub-Skill-Scout|GitHub Skill Scout]] - bewertet externe Skills/Repos vor Installation oder Übernahme.
+- [[Mindrails/Superbrain/47-Design-Library-Radar|Design Library Radar]] - beobachtet hochwertige GitHub-UI-/Design-Ressourcen.
 
 ## Betriebssystem
 
@@ -76,7 +90,10 @@ source_of_truth: true
 5. Forecasts werden nachgehalten. Eine falsche Prognose ist nützlich, wenn sie später sauber ausgewertet wird.
 6. Agenten lernen nur über überprüfte Outcomes, Scorecards und wiederverwendbare Lessons, nicht über lose Bauchgefühl-Erinnerungen.
 
-## Datenzugriff
+## Wahrheit und Datenzugriff
+
+- Vault-Notizen sind Kontext, nicht automatisch Gegenwart: wenn Code, Live-Seite oder Messdaten widersprechen, wird die Notiz als Snapshot behandelt und nicht als aktuelle Wahrheit.
+- Finale Bewertungen brauchen eine Beleg-Hierarchie: Live/Code/Messdaten vor alten Projekt-Notizen, Annahmen immer markieren.
 
 - Interner Kontext: [[Mindrails/Overview]], [[Phonbot/Overview]], [[Phonbot/Phonbot-Gesamtsystem]], [[Phonbot/ZuTun]], [[Phonbot/modules/Backend-Agents]], [[Phonbot/modules/Backend-Voice-Telephony]], [[Phonbot/modules/Backend-Billing-Usage]], [[Phonbot/modules/Backend-Comm-Scheduling]].
 - Code-Kontext: `C:\Users\pc105\.openclaw\workspace\voice-agent-saas`.

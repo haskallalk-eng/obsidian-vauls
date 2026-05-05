@@ -27,6 +27,7 @@ Die SEO Squad ist kein "mach Keywords rein"-Team. Sie prüft, ob Phonbot gefunde
 | [[Mindrails/Superbrain/38-Programmatic-SEO-Agent|Programmatic SEO Agent]] | Branchen-/Cluster-Seiten, Templates, Duplicate Risk, Sitemap-Skalierung. |
 | [[Mindrails/Superbrain/39-AI-Search-LLM-SEO-Agent|AI Search & LLM SEO Agent]] | `llms.txt`, AI-Crawler, Entity Clarity, Answer-Engine-Sichtbarkeit. |
 | [[Mindrails/Superbrain/41-SEO-Measurement-Agent|SEO Measurement Agent]] | Search Console, IndexNow/Bing, Rankings, CTR, Crawl-/Index-Fehler, Experimente. |
+| [[Mindrails/Superbrain/42-SEO-Final-Evaluation-Protocol|SEO Final Evaluation Protocol]] | Endscore, Score-Caps, Beleg-Hierarchie, finale SEO-Entscheidung. |
 
 ## SEO-Review-Reihenfolge
 
@@ -38,6 +39,18 @@ Die SEO Squad ist kein "mach Keywords rein"-Team. Sie prüft, ob Phonbot gefunde
 6. Local: Passt die Seite zu lokaler Kaufintention?
 7. AI Search: Ist der Inhalt für AI Overviews, ChatGPT/Perplexity und LLM-Crawler klar?
 8. Measurement: Wie wird Erfolg oder Fehler bewiesen?
+9. Final Evaluation: Welche Bewertung ist nach Belegen erlaubt, und welche Score-Caps greifen?
+
+## Finale SEO-Bewertung
+
+Eine finale SEO-Aussage darf nie nur aus `pnpm seo:audit` oder einer alten Vault-Notiz kommen. Die SEO Squad muss unterscheiden:
+
+- crawlbar: Live-URL ist technisch abrufbar und indexierbar.
+- indexiert: Suchmaschine hat die URL im Index oder Search Console/Bing bestätigt es.
+- rankingfähig: Inhalt, Intent, Links, Performance und SERP-Realität passen.
+- messbar: Baseline, Zielquery, URL-Gruppe und Revisit-Datum existieren.
+
+Wenn Preis, Legal-Entity, `llms.txt`, `ai.txt`, JSON-LD oder sichtbarer Content voneinander abweichen, ist das ein Drift-Finding und begrenzt die Endbewertung.
 
 ## Recherchemodus
 
@@ -49,6 +62,7 @@ Vor größeren SEO-Entscheidungen wird frisch geprüft:
 - Phonbot-Code: `apps/web/public`, `apps/web/index.html`, SEO-Generator-Scripts, `Caddyfile`.
 - Phonbot-Vault: [[Phonbot/SEO|Phonbot SEO]], [[Phonbot/Pages|Pages]], [[Phonbot/Pricing|Pricing]].
 - AI-Crawler-Doku, wenn `llms.txt`, `ai.txt` oder Robots-Regeln betroffen sind.
+- Finale Bewertung: [[Mindrails/Superbrain/42-SEO-Final-Evaluation-Protocol|SEO Final Evaluation Protocol]] anwenden.
 
 ## SEO-Experiment-Logik
 

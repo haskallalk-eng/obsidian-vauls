@@ -62,6 +62,21 @@ Diese Quellen wurden für die erste Superbrain-Version genutzt oder als Standard
 - IndexNow - URL Submission für teilnehmende Suchmaschinen: https://www.indexnow.org/
 - OpenAI Bot Docs - GPTBot/OAI-SearchBot/ChatGPT-User Crawler-Verhalten: https://platform.openai.com/docs/bots
 
+## Design Skills, UI Libraries, GitHub Evaluation
+
+- shadcn/ui - Tailwind/Radix copy-paste UI components: https://github.com/shadcn-ui/ui
+- Radix Primitives - accessible unstyled UI primitives: https://github.com/radix-ui/primitives
+- Tailwind CSS - utility-first CSS framework: https://github.com/tailwindlabs/tailwindcss
+- Headless UI - unstyled accessible UI components: https://github.com/tailwindlabs/headlessui
+- Magic UI - animated marketing components: https://github.com/magicuidesign/magicui
+- Mantine - React component library: https://github.com/mantinedev/mantine
+- HeroUI - React UI library: https://github.com/heroui-inc/heroui
+- Chakra UI - accessible React component library: https://github.com/chakra-ui/chakra-ui
+- Lucide Icons - SVG icon family: https://github.com/lucide-icons/lucide
+- Motion - animation library: https://github.com/motiondivision/motion
+- GitHub Stars Practices Research - why stars are social signal, not proof: https://arxiv.org/abs/1811.07643
+- Fake Stars Research - fake-star risk in GitHub evaluation: https://arxiv.org/abs/2412.13459
+
 ## Source Verification and Knowledge Management
 
 - Purdue OWL Evaluating Sources - Kriterien für Quellenqualität: https://owl.purdue.edu/owl/research_and_citation/conducting_research/evaluating_sources_of_information/index.html
