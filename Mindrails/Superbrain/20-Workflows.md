@@ -1,0 +1,60 @@
+---
+title: Superbrain Workflows
+type: workflow
+status: active
+tags:
+  - mindrails
+  - superbrain
+  - workflow
+parent: "[[Mindrails/Superbrain/00-Superbrain-Index|Superbrain]]"
+created: 2026-05-05
+updated: 2026-05-05
+---
+
+# Workflows
+
+## Bugfix
+
+1. [[Mindrails/Superbrain/10-Debugger|Debugger]] beweist den Bug und grenzt ihn ein.
+2. [[Mindrails/Superbrain/11-Engineer|Engineer]] bestimmt Fix-Korridor, Blast-Radius und Tests.
+3. [[Mindrails/Superbrain/12-Coder|Coder]] implementiert minimal.
+4. [[Mindrails/Superbrain/13-Reviewer|Reviewer]] sucht Regressionen und falsche Annahmen.
+5. [[Mindrails/Superbrain/14-QA-Tester|QA-Tester]] verifiziert automatisiert/manuell.
+6. [[Mindrails/Superbrain/15-Security-Privacy|Security & Privacy]] prüft, falls Auth, Daten, Billing, Provider oder PII betroffen sind.
+
+## Feature
+
+1. [[Mindrails/Superbrain/02-Business-Coach|Business-Coach]] klärt Kundennutzen und Metrik.
+2. [[Mindrails/Superbrain/04-Challenger-Council|Challenger-Council]] attackiert Scope und Risiko.
+3. Engineer entwirft Daten-/Runtime-Verhalten.
+4. Coder baut kleinste funktionierende Version.
+5. QA prüft End-to-End und Settings -> Runtime-Wirkung.
+6. Decision Gate entscheidet Ship, Iterate oder Kill.
+
+## Strategie / Marktentscheidung
+
+1. Business-Coach formuliert Entscheidung.
+2. [[Mindrails/Superbrain/03-AI-Welt-Coach|AI-Welt-Coach]] aktualisiert Markt-/AI-Kontext.
+3. [[Mindrails/Superbrain/22-Source-Verification|Source Verification]] prüft Quellenqualität.
+4. Forecast in [[Mindrails/Superbrain/50-Forecast-Ledger|Forecast Ledger]] oder Experiment definieren.
+5. Challenger-Council gibt Gegenposition.
+6. Entscheidung in einem Decision-Record dokumentieren.
+
+## Customer Incident
+
+1. Symptom, Tenant, Zeitraum und Kundenaussage erfassen.
+2. Debugger sucht Transcript/Logs/DB/Provider-Beleg.
+3. Business-Coach bewertet Kundenschaden und Kommunikation.
+4. Engineer/Coder fixen oder bauen Workaround.
+5. QA macht Regression und Live-Smoke.
+6. Postmortem, wenn Vertrauen, Daten oder Zahlung betroffen waren.
+
+## Release / Deploy
+
+1. Uncommitted Changes prüfen.
+2. Tests/build/lint passend zur Änderung.
+3. Reviewer prüft Diff.
+4. Security prüft bei sensiblen Änderungen.
+5. [[Mindrails/Superbrain/21-Decision-Gates|Decision Gates]]: deployen, warten oder zurückstellen.
+6. Nach Deploy: Smoke, Logs, Health, betroffene User-Journey.
+
