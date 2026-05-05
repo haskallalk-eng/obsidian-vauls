@@ -3,6 +3,7 @@ title: Phonbot — Preisgestaltung (Stand Code)
 type: reference
 tags: [phonbot, pricing, plans, billing]
 created: 2026-04-22
+updated: 2026-05-05
 source: apps/api/src/billing.ts PLANS
 ---
 
@@ -15,7 +16,7 @@ source: apps/api/src/billing.ts PLANS
 | Plan | ID | Preis/Monat | Min inklusive | Überschuss/Min | Agenten | Stripe-Env |
 |---|---|---:|---:|---:|---:|---|
 | **Free** | `free` | 0 € | 30 | _gesperrt_ | 1 | — |
-| **Nummer** | `nummer` | 8,99 € | 70 | 0,22 € | 1 | `STRIPE_PRICE_NUMMER` / `STRIPE_PRICE_NUMMER_YEARLY` |
+| **Nummer** | `nummer` | 8,99 € | 100 einmalig | 0,22 € | 1 | `STRIPE_PRICE_NUMMER` / `STRIPE_PRICE_NUMMER_YEARLY` |
 | **Starter** | `starter` | 79 € | 360 | 0,22 € | 1 | `STRIPE_PRICE_STARTER` / `STRIPE_PRICE_STARTER_YEARLY` |
 | **Professional** | `pro` | 179 € | 1.000 | 0,20 € | 3 | `STRIPE_PRICE_PRO` / `STRIPE_PRICE_PRO_YEARLY` |
 | **Agency** | `agency` | 349 € | 2.400 | 0,15 € | 10 | `STRIPE_PRICE_AGENCY` / `STRIPE_PRICE_AGENCY_YEARLY` |
@@ -27,7 +28,7 @@ Alle Preise sind **netto**. Abrechnung sekundengenau (Retell rundet auf volle Se
 1. **Reservierung vor dem Call** — `tryReserveMinutes(orgId, 5)` ([usage.ts:119-153](../../.openclaw/workspace/voice-agent-saas/apps/api/src/usage.ts#L119)) reserviert einen Block von 5 Minuten atomar. Blockiert den Call wenn Plan-Status `incomplete`/`past_due`/`paused`/`canceled` ist oder wenn `minutes_used + 5 > minutes_limit` UND der Plan nicht in den `paidPlans` liegt (dann Overage zulässig).
 2. **Reconciliation nach dem Call** — `retell-webhooks.ts:186` ruft `reconcileMinutes(orgId, reserved, actual, agentId)` auf. Differenz `actual − reserved` wird auf `orgs.minutes_used` verrechnet.
 3. **Overage** — pro Plan definierter `overchargePerMinute` (nur für `nummer/starter/pro/agency`). Free blockiert bei 30 min ganz.
-4. **Perioden-Reset** — bei Subscription-Renewal setzt `syncSubscription` `minutes_used = 0` ([billing.ts:261](../../.openclaw/workspace/voice-agent-saas/apps/api/src/billing.ts#L261)).
+4. **Perioden-Reset** — nur monatliche Plaene (`starter/pro/agency`) setzen bei Subscription-Renewal `minutes_used = 0`. Free und Nummer sind einmalige Guthaben und laden sich nicht monatlich neu auf.
 
 ## Premium-Voice-Surcharge
 
@@ -63,7 +64,8 @@ Ersparnis = Alternative-Personalkosten (Teilzeit-Rezeption/MFA/Bürokraft ~1.500
 
 - Branchen-Landing Header: **„Ab 8,99 €/Monat"** (= Nummer-Plan, der günstigste zahlende Plan mit eigener Nummer)
 - Hero-CTA Badge: **„30 Freiminuten"** (Free-Plan-Quota — was User ohne Kreditkarte testen können)
-- _Nicht verwenden:_ „Ab 49 €" (alter falscher Starter-Preis), „100 Freiminuten" (war nie in Code)
+- Nummer-Plan: **„100 Gesamt-Freiminuten einmalig"** (= 30 Start + 70 Nummer-Bonus; kein monatlich erneuertes Kontingent)
+- _Nicht verwenden:_ „Ab 49 €" (alter falscher Starter-Preis), „70 Min/Monat" für Nummer (alter falscher Nummer-Stand)
 
 ## Änderungen nachziehen — Checkliste
 
