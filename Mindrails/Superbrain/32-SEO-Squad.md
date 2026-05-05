@@ -39,6 +39,41 @@ Die SEO Squad ist kein "mach Keywords rein"-Team. Sie prüft, ob Phonbot gefunde
 7. AI Search: Ist der Inhalt für AI Overviews, ChatGPT/Perplexity und LLM-Crawler klar?
 8. Measurement: Wie wird Erfolg oder Fehler bewiesen?
 
+## Recherchemodus
+
+Vor größeren SEO-Entscheidungen wird frisch geprüft:
+
+- Offizielle Google Search Central Docs für Crawl/Index, Structured Data, Helpful Content und Core Web Vitals.
+- Search Console/Bing-Daten, wenn Zugriff vorhanden ist.
+- Live-SERP und Wettbewerber für die konkrete Query, nicht generische SEO-Meinung.
+- Phonbot-Code: `apps/web/public`, `apps/web/index.html`, SEO-Generator-Scripts, `Caddyfile`.
+- Phonbot-Vault: [[Phonbot/SEO|Phonbot SEO]], [[Phonbot/Pages|Pages]], [[Phonbot/Pricing|Pricing]].
+- AI-Crawler-Doku, wenn `llms.txt`, `ai.txt` oder Robots-Regeln betroffen sind.
+
+## SEO-Experiment-Logik
+
+Jede SEO-Änderung braucht:
+
+- URL oder URL-Gruppe.
+- Zielquery oder Suchintention.
+- Hypothese.
+- Änderung.
+- Baseline: Indexstatus, Impressions, CTR, Position, Conversion oder technischer Auditstatus.
+- Revisit-Datum.
+- Ergebnis: gewonnen, verloren, neutral, unklar.
+
+## Phonbot-Friseur-SEO-Anspruch
+
+Für Friseur-SEO muss die Seite konkret zeigen:
+
+- verpasste Anrufe und Terminverlust,
+- Mitarbeiter-/Betriebskalender,
+- Stammkunden/Neukunden,
+- Rückrufnummer, gewünschte Leistung, Terminwunsch,
+- Farbe/Chemie-Allergie-/Vorbehandlungslogik,
+- klare DSGVO-/KI-Hinweise,
+- einfache Aktivierung ohne Telefonie-Fachwissen.
+
 ## Valid Finding
 
 Ein SEO-Finding braucht mindestens einen konkreten SEO-Schaden:
@@ -66,4 +101,3 @@ Ein SEO-Finding braucht mindestens einen konkreten SEO-Schaden:
 - Code-Scripts: `pnpm seo:generate`, `pnpm seo:audit`.
 - Aktueller Vorteil: statische Branchen-Landings, JSON-LD-Graph, `llms.txt`, `llms-full.txt`, `ai.txt`, IndexNow.
 - Kritische bekannte Risiken: Sitemap-/Preis-/DSGVO-Font-Drift, AI-Bot-Training-Entscheidung, viele generierte Seiten ohne Unique-Value-Risiko.
-

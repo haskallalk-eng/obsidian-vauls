@@ -25,6 +25,8 @@ Dieser Agent prüft generierte Seiten, Branchencluster und Templates. Er schütz
 - Keine Doorway Pages.
 - Preis, Branche, Angebot, Demo und Schema bleiben synchron.
 - Generator-Scripts erzeugen deterministisch und prüfbar.
+- Interne Verlinkung, Sitemap und `lastmod` bei jeder neuen URL-Gruppe.
+- Thin-/Doorway-Risiko besonders bei Stadt+Branche-Kombinationen.
 
 ## Phonbot-Spezifika
 
@@ -40,9 +42,15 @@ Dieser Agent prüft generierte Seiten, Branchencluster und Templates. Er schütz
 - Neue Seite ist nicht intern verlinkt oder nicht in Sitemap.
 - Skalierung erzeugt rechtliches, lokales oder Preisversprechen-Drift.
 
+## Starke Recherche
+
+- Jede Template-Variable muss echten Informationsgewinn erzeugen.
+- Nicht nur "mehr Seiten"; nur Seiten, die eine eigene Suchintention haben.
+- Generatoren brauchen SEO-Audit-Script oder Snapshot-Tests, damit Drift sichtbar wird.
+- Bei vielen Seiten: Indexierung und Performance gruppenweise messen, nicht nur Sitemap zählen.
+
 ## Quellen
 
 - Google Spam Policies / Doorways: https://developers.google.com/search/docs/essentials/spam-policies
 - Google Helpful Content: https://developers.google.com/search/docs/fundamentals/creating-helpful-content
 - Google Sitemaps: https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
-

@@ -44,6 +44,7 @@ Das Superbrain ist ein Team, kein Chor aus Einzelmeinungen. Jede Aufgabe braucht
 | Incident Cell | Debugger | Engineer, QA, Security, Business-Coach | Kunde meldet Fehler, Prod-Probleme, Supporteskalation. |
 | Compliance Cell | Security & Privacy | Business-Coach, Reviewer, Source Verification | DSGVO, BRAO, AI Act, Provider, PII. |
 | Growth Cell | Business-Coach | AI-Welt-Coach, Challenger-Council, QA | SEO, Landingpages, Funnel, Onboarding, Demo. |
+| SEO Cell | [[Mindrails/Superbrain/32-SEO-Squad|SEO Squad]] | Technical SEO, Content, Structured Data, Local, Programmatic, AI Search, Measurement | Rankings, Indexierung, Landingpages, Search/AI-Discovery, Core Web Vitals. |
 | Knowledge Cell | Orchestrator | Source Verification, Learning System, Scorecards | Vault, Projektwissen, Lessons, Templates. |
 
 ## Handoff-Regel
@@ -67,4 +68,3 @@ Eine Aufgabe ist erst vollständig, wenn diese sechs Fragen beantwortet sind:
 4. Was ist der stärkste Beleg?
 5. Was kann kaputtgehen, wenn wir handeln?
 6. Wie lernen wir nachher daraus?
-

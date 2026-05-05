@@ -48,6 +48,16 @@ updated: 2026-05-05
 5. Challenger-Council gibt Gegenposition.
 6. Entscheidung in einem Decision-Record dokumentieren.
 
+## SEO / Landingpage
+
+1. [[Mindrails/Superbrain/32-SEO-Squad|SEO Squad]] bestimmt betroffene URL-/Seitenklasse.
+2. [[Mindrails/Superbrain/33-Technical-SEO-Crawl-Index-Agent|Crawl & Index]] prüft Indexierbarkeit, Sitemap, Canonical, Robots.
+3. [[Mindrails/Superbrain/36-Content-Intent-Agent|Content & Intent]] prüft Suchintention und Page-Value.
+4. [[Mindrails/Superbrain/35-Structured-Data-Agent|Structured Data]] prüft JSON-LD und Entity-Drift.
+5. [[Mindrails/Superbrain/34-SEO-Performance-CWV-Agent|Performance & CWV]] prüft mobile Geschwindigkeit und Web Vitals.
+6. Je nach Seite: [[Mindrails/Superbrain/37-Local-SEO-Agent|Local]], [[Mindrails/Superbrain/38-Programmatic-SEO-Agent|Programmatic]], [[Mindrails/Superbrain/39-AI-Search-LLM-SEO-Agent|AI Search]].
+7. [[Mindrails/Superbrain/41-SEO-Measurement-Agent|Measurement]] definiert Baseline, Erfolgskriterium und Revisit.
+
 ## Customer Incident
 
 1. Symptom, Tenant, Zeitraum und Kundenaussage erfassen.

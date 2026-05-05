@@ -22,7 +22,9 @@ Diese Matrix sorgt dafür, dass das Team jede Aufgabe gemeinsam, aber nicht chao
 | "fix", "geht nicht", Fehlerkonsole | Debugger | Engineer, Coder, Reviewer, QA | Root-Cause, Patch, Tests, Restrisiko. |
 | "prüf/review/deep" | Reviewer | Debugger, Security, QA, Engineer | Findings zuerst, echte Bugs, File:Line. |
 | "plane" | Orchestrator | Business/Engineer/AI je nach Thema, Challenger | Plan, Risiken, Fragen, Stop/Go. |
-| "SEO", "Ranking", "Landingpage" | Business-Coach | AI-Welt-Coach, QA, Reviewer, Source Verification | SEO-Audit, Prioritäten, Umsetzung/Tests. |
+| "SEO", "Ranking", "Landingpage" | [[Mindrails/Superbrain/32-SEO-Squad|SEO Squad]] | Business-Coach, Content, Technical SEO, Structured Data, Measurement | SEO-Audit, Prioritäten, Umsetzung/Tests. |
+| "Core Web Vitals", "Sitemap", "robots", "canonical", "structured data" | passende Technical-SEO-Rolle | Frontend, Backend, Measurement | technisches SEO-Finding mit Datei/URL/Check. |
+| "AI Search", "LLM SEO", "llms.txt", "AI Overview" | [[Mindrails/Superbrain/39-AI-Search-LLM-SEO-Agent|AI Search & LLM SEO Agent]] | Content, Structured Data, Source Verification | AI-Discovery-Check, Entity- und Quellenklarheit. |
 | "Prompt", "Agent", "Retell", "Stimme" | AI-Welt-Coach | Engineer, QA, Business, Security | Prompt-/Runtime-Plan, Evals, Deploy-Wirkung. |
 | "Kalender", "Kunden", "Termin" | Engineer | Debugger, QA, Business, Coder | Datenfluss, UX, API/DB/Prompt-Wirkung. |
 | "Billing", "Stripe", "Minuten" | Engineer | Debugger, Security, Reviewer, QA | Transaktions-/Race-/UI-Prüfung. |

@@ -44,6 +44,24 @@ Diese Quellen wurden für die erste Superbrain-Version genutzt oder als Standard
 - SLSA Supply Chain Levels: https://slsa.dev/spec/latest/
 - OpenSSF Scorecard: https://github.com/ossf/scorecard
 
+## SEO, Search, AI Discovery
+
+- Google SEO Starter Guide - SEO-Grundlagen, Crawlbarkeit, hilfreiche Seiten: https://developers.google.com/search/docs/fundamentals/seo-starter-guide
+- Google Crawling and Indexing Docs - robots, sitemaps, canonical, crawling/indexing: https://developers.google.com/search/docs/crawling-indexing
+- Google Sitemaps - Sitemap-Aufbau und `lastmod`: https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
+- Google Core Web Vitals - LCP/INP/CLS als Search/Page-Experience-Signale: https://developers.google.com/search/docs/appearance/core-web-vitals
+- Google Page Experience - technische UX-Signale für Search: https://developers.google.com/search/docs/appearance/page-experience
+- Google Structured Data Policies - Rich-Result-/JSON-LD-Regeln: https://developers.google.com/search/docs/appearance/structured-data/sd-policies
+- Google Local Business Structured Data: https://developers.google.com/search/docs/appearance/structured-data/local-business
+- Google Business Profile Guidelines - lokale Unternehmensdarstellung: https://support.google.com/business/answer/3038177
+- schema.org Docs - Schema-Typen und Vocabulary: https://schema.org/docs/documents.html
+- Google Helpful Content / People-first Content: https://developers.google.com/search/docs/fundamentals/creating-helpful-content
+- Google Search Quality Rater Guidelines - Qualitäts-/E-E-A-T-Kontext: https://guidelines.raterhub.com/searchqualityevaluatorguidelines.pdf
+- Google Spam Policies / Doorways - Thin-/Doorway-Risiken bei Programmatic SEO: https://developers.google.com/search/docs/essentials/spam-policies
+- Bing Webmaster Guidelines: https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a
+- IndexNow - URL Submission für teilnehmende Suchmaschinen: https://www.indexnow.org/
+- OpenAI Bot Docs - GPTBot/OAI-SearchBot/ChatGPT-User Crawler-Verhalten: https://platform.openai.com/docs/bots
+
 ## Source Verification and Knowledge Management
 
 - Purdue OWL Evaluating Sources - Kriterien für Quellenqualität: https://owl.purdue.edu/owl/research_and_citation/conducting_research/evaluating_sources_of_information/index.html

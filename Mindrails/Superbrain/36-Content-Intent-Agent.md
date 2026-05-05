@@ -25,6 +25,8 @@ Dieser Agent prüft, ob eine Seite eine echte Suchintention besser bedient als g
 - Snippet-Wert: Warum sollte jemand klicken?
 - People-first Content statt "SEO-Seiten-Füllmasse".
 - Vertrauenssignale: Preise, DSGVO, echte Funktionen, Grenzen, FAQ.
+- SERP-Realität: Welche Art Content rankt für die konkrete Query?
+- Differenzierung: Warum ist Phonbot besser/passender als Callcenter, Anrufbeantworter oder generische KI?
 
 ## Phonbot-Spezifika
 
@@ -41,9 +43,15 @@ Dieser Agent prüft, ob eine Seite eine echte Suchintention besser bedient als g
 - FAQ beantwortet nicht die echten Kaufhürden.
 - Content skaliert programmatic, aber verliert Unique Value.
 
+## Starke Recherche
+
+- Für jede wichtige Seite zuerst Query-Cluster und Suchintention notieren.
+- Top-Wettbewerber/SERP-Features prüfen, falls eine Ranking-Entscheidung getroffen wird.
+- Helpful Content heißt: konkrete Antworten, echte Produktdetails, keine austauschbaren KI-Floskeln.
+- Friseur-Seiten brauchen echte Salon-Situationen statt generischer SaaS-Copy.
+
 ## Quellen
 
 - Google People-first Content: https://developers.google.com/search/docs/fundamentals/creating-helpful-content
 - Google SEO Starter Guide: https://developers.google.com/search/docs/fundamentals/seo-starter-guide
 - Google Search Quality Rater Guidelines: https://guidelines.raterhub.com/searchqualityevaluatorguidelines.pdf
-

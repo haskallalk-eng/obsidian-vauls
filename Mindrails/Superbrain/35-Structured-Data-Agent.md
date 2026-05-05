@@ -24,6 +24,7 @@ Dieser Agent prüft JSON-LD, Schema.org und Rich-Result-Fähigkeit. Er ist stren
 - FAQ-Fragen, die auf der Seite sichtbar und hilfreich sind.
 - Schema-Typen passend zur tatsächlichen Seite.
 - Rich Results Test / Schema Validator.
+- Google Policies: Markup muss sichtbaren und wahrheitsgemäßen Seiteninhalt abbilden.
 
 ## Phonbot-Spezifika
 
@@ -40,9 +41,14 @@ Dieser Agent prüft JSON-LD, Schema.org und Rich-Result-Fähigkeit. Er ist stren
 - Preis, Name, Adresse, Telefonnummer, Rating oder FAQ sind irreführend.
 - Entity-Graph verwirrt Produkt/Dachmarke/Kundenversprechen.
 
+## Starke Recherche
+
+- Prüfe zuerst Syntax, dann Richtlinien, dann sichtbaren Content, dann Business-Wahrheit.
+- Bei Preisen gilt: Billing/UI/Pricing/JSON-LD/LLM-Dateien müssen dieselbe Wahrheit erzählen.
+- Bei LocalBusiness gilt: keine fake-local Signale, keine falsche physische Präsenz.
+
 ## Quellen
 
 - Google Structured Data Guidelines: https://developers.google.com/search/docs/appearance/structured-data/sd-policies
 - schema.org Documentation: https://schema.org/docs/documents.html
 - schema.org latest release: https://schema.org/version/latest/
-

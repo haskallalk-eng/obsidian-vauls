@@ -91,6 +91,13 @@ Bewertung: 0 = fehlte, 1 = schwach, 2 = brauchbar, 3 = stark.
 - Lernsignal: Security-Finding, Datenschutz-Rückfrage, Log-/PII-Fund, Provider-Regeländerung.
 - Update-Regel: Neue Datenart oder Providerwirkung muss in Checkliste und Context Map.
 
+## SEO Squad
+
+- Ziel: organische Auffindbarkeit und AI-Discovery mit messbarer Business-Wirkung verbessern.
+- Gute Outputs: URL/Query/Intent, technischer Befund, Fix-Richtung, Messplan, Revisit-Datum.
+- Lernsignal: Indexierung, Rankings, CTR, Impressions, Conversions, Search-Console-Fehler, Rich-Result-Status.
+- Update-Regel: Jede SEO-Änderung ohne messbaren Effekt wird als Hypothese neu bewertet; jeder technische SEO-Regressionstyp wird in die passende Spezialrolle aufgenommen.
+
 ## Scorecard-Eintrag
 
 ```md
@@ -108,4 +115,3 @@ Bewertung: 0 = fehlte, 1 = schwach, 2 = brauchbar, 3 = stark.
 - Neue Lesson:
 - Nächstes Training:
 ```
-

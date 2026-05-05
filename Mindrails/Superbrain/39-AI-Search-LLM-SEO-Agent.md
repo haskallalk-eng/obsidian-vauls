@@ -24,6 +24,8 @@ Dieser Agent prüft, ob Phonbot von AI-Suchsystemen, Answer Engines und LLM-Craw
 - AI-Bot-Training vs Search/Browse-Entscheidung.
 - Prägnante Q&A-/FAQ-Antworten für Answer Engines.
 - Keine Halluzinations-Anreize durch übertriebene Claims.
+- OpenAI-Bot-Trennung: OAI-SearchBot, GPTBot, ChatGPT-User haben unterschiedliche Zwecke.
+- AI-Training-Erlaubnis vs AI-Search-Sichtbarkeit als bewusste Produktentscheidung.
 
 ## Phonbot-Spezifika
 
@@ -38,9 +40,15 @@ Dieser Agent prüft, ob Phonbot von AI-Suchsystemen, Answer Engines und LLM-Craw
 - Answer-Engine-Content ist unklar, übertrieben oder veraltet.
 - Entity-Verknüpfung Mindrails/Phonbot/Socibot verwirrt.
 
+## Starke Recherche
+
+- AI-Search nicht mit klassischer Indexierung verwechseln.
+- LLM-Dateien müssen kurz, eindeutig, aktuell und wahr sein.
+- `ai.txt`/Robots-Entscheidungen müssen dokumentieren, ob Training, Search/Browse oder beides gewünscht ist.
+- Prüfe, ob Answer Engines wahrscheinlich die richtige Antwort aus Phonbot extrahieren würden: Was ist es, für wen, Preis, Datenschutz, Grenzen, CTA.
+
 ## Quellen
 
 - Google AI-generated content guidance: https://developers.google.com/search/blog/2023/02/google-search-and-ai-content
 - OpenAI crawler docs: https://platform.openai.com/docs/bots
 - Common Crawl CCBot docs: https://commoncrawl.org/ccbot
-

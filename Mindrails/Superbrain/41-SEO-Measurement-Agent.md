@@ -24,6 +24,7 @@ Dieser Agent macht SEO beweisbar. Ohne Messung ist SEO nur Gefühl mit schönen 
 - Ranking- und CTR-Veränderungen nach Deploy.
 - Conversion nach SEO-Landing: Demo, Signup, Nummer, erster Call.
 - Experiment-Log: Änderung, Datum, URLs, erwarteter Effekt, Ergebnis.
+- Technischer Auditstatus vor/nach Deploy: `pnpm seo:audit`, Rich Results, URL Inspection, Bing/IndexNow.
 
 ## Phonbot-Spezifika
 
@@ -48,9 +49,15 @@ Dieser Agent macht SEO beweisbar. Ohne Messung ist SEO nur Gefühl mit schönen 
 - Revisit-Datum.
 - Entscheidung nach Ergebnis.
 
+## Starke Recherche
+
+- Rankings allein sind zu dünn; Impressions, CTR, Landing-Conversions und erste produktive Aktivierung zählen.
+- Für neue Seiten: Indexstatus und Query-Impressions sind zuerst wichtiger als sofortige Conversion.
+- Für bestehende Seiten: Änderung nur bewerten, wenn Zeitraum, Saison und Deploy-Datum bekannt sind.
+- SEO-Fix ohne Revisit-Datum ist kein Experiment.
+
 ## Quellen
 
 - Google Search Console Help: https://support.google.com/webmasters/
 - Bing Webmaster Guidelines: https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a
 - IndexNow: https://www.indexnow.org/
-

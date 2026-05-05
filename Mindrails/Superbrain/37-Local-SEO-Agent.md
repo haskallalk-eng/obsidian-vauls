@@ -24,6 +24,8 @@ Dieser Agent prüft, ob Phonbot für lokale SMB-Intentionen, besonders Friseure,
 - Testimonials/Use Cases/Beispiele mit lokaler Glaubwürdigkeit.
 - LocalBusiness/Service Schema ohne falsche lokale Behauptungen.
 - CTA für lokale Betriebe: schnell verstehen, schnell testen.
+- Google Business Profile / Local Pack Relevanz, falls Mindrails/Phonbot lokal sichtbar sein soll.
+- Unterschied zwischen Phonbot als SaaS und Kunden als lokale Betriebe.
 
 ## Phonbot-Spezifika
 
@@ -39,9 +41,14 @@ Dieser Agent prüft, ob Phonbot für lokale SMB-Intentionen, besonders Friseure,
 - NAP/Adresse/Telefon widerspricht Legal/JSON-LD.
 - Orts-/Branchen-Skalierung wirkt dünn oder doorway-artig.
 
+## Starke Recherche
+
+- Local SEO darf nicht so tun, als hätte Phonbot in jeder Stadt eine lokale Präsenz.
+- Für lokale Branchenintention kann die Seite trotzdem branchennah sein: "für Friseure", nicht fake "Friseur KI Berlin Mitte".
+- NAP/Adresse/Telefon nur verwenden, wenn sie legal und live konsistent sind.
+
 ## Quellen
 
 - Google Business Profile / Local SEO Guidelines: https://support.google.com/business/answer/3038177
 - Google Helpful Content: https://developers.google.com/search/docs/fundamentals/creating-helpful-content
 - Google Structured Data Guidelines: https://developers.google.com/search/docs/appearance/structured-data/sd-policies
-

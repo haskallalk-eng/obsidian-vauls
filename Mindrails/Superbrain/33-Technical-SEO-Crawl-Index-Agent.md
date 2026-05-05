@@ -26,6 +26,8 @@ Dieser Agent prüft, ob Suchmaschinen die richtigen URLs finden, crawlen, render
 - Noindex/Disallow-Verwechslung.
 - JS-rendering Risiko bei SPA vs statischen Seiten.
 - Indexierbarkeit von Branchen-/Cluster-Seiten.
+- Search Console URL Inspection, wenn Zugriff vorhanden ist.
+- Server-/Caddy-Status: Content-Type, redirects, cache, 404/SPA fallback.
 
 ## Phonbot-Spezifika
 
@@ -42,9 +44,15 @@ Dieser Agent prüft, ob Suchmaschinen die richtigen URLs finden, crawlen, render
 - Robots blockt versehentlich wichtige Seiten oder erlaubt sensible Seiten.
 - Search Console/Bing kann die URL nicht abrufen oder rendert falschen Content.
 
+## Starke Recherche
+
+- Vergleiche Sitemap, HTML canonical, interne Links und Live-URL.
+- Prüfe `robots.txt` nicht als Noindex-Werkzeug; Noindex und Disallow haben unterschiedliche Effekte.
+- Prüfe bei Programmatic-Seiten, ob sie nur entdeckt oder wirklich indexiert sind.
+- Wenn Google eine andere Canonical wählt, nicht blind Canonical ändern: erst Duplicate-/Content-/Internal-Link-Signale prüfen.
+
 ## Quellen
 
 - Google Crawling and Indexing: https://developers.google.com/search/docs/crawling-indexing
 - Google Sitemaps: https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
 - Google SEO Starter Guide: https://developers.google.com/search/docs/fundamentals/seo-starter-guide
-

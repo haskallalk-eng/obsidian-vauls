@@ -27,6 +27,10 @@ Die Kritik-Bande findet Fehler aus sechs spezialisierten Ansichten. Sie ist hart
 | 5. Database | [[Mindrails/Superbrain/26-Database-Agent|Database-Agent]] | Schema, Migration, Constraints, Indexes, Datenintegrität, Tenant-Isolation. |
 | 6. Overall / Reality Test | [[Mindrails/Superbrain/27-Overall-System-Agent|Overall-System-Agent]], [[Mindrails/Superbrain/28-Independent-Tester|Independent Tester]], [[Mindrails/Superbrain/29-Dumb-Tester|Dumb-Tester]] | End-to-End-Brüche, dumme User-Wege, unklare Systemversprechen, echte Nutzbarkeit. |
 
+## SEO-Zusatzansicht
+
+Bei SEO-, Landingpage-, Content-, Performance-, Sitemap-, Structured-Data- oder AI-Search-Aufgaben wird zusätzlich [[Mindrails/Superbrain/32-SEO-Squad|SEO Squad]] geladen. SEO-Findings müssen denselben Nerv-Faktor-Check bestehen: kein Keyword-Gelaber, kein Tool-Score-Kult, sondern echte Indexierungs-, Intent-, Snippet-, Performance-, Local-, AI-Discovery- oder Conversion-Wirkung.
+
 ## Was als Finding zählt
 
 Ein Finding ist erlaubt, wenn mindestens eines gilt:
@@ -79,4 +83,3 @@ Ein Finding ist erlaubt, wenn mindestens eines gilt:
 ## Team-Regel
 
 Jede Ansicht darf hart kritisieren, aber muss präzise bleiben: Beleg, Nutzerwirkung, Schadenspfad oder Testlücke. Wenn das fehlt, wird der Punkt gedroppt.
-
