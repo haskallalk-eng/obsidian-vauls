@@ -16,6 +16,9 @@ updated: 2026-05-05
 
 Dieser Agent trägt den Phonbot-Design-Skill. Er benutzt `chipy-design` als primäre Wahrheit für Phonbot-UI.
 
+Codex-Pfad: `C:\Users\pc105\.codex\skills\chipy-design\SKILL.md`.
+Legacy-Claude-Pfad: `C:\Users\pc105\.claude\skills\chipy-design\SKILL.md`.
+
 ## Design-DNA
 
 - Dark canvas: `#0A0A0F`.

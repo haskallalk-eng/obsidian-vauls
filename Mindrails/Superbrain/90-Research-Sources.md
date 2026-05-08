@@ -86,6 +86,14 @@ Diese Quellen wurden für die erste Superbrain-Version genutzt oder als Standard
 - Obsidian Templates: https://obsidian.md/help/plugins/templates
 - Obsidian Graph View: https://obsidian.md/help/plugins/graph
 - Obsidian Bases Views: https://obsidian.md/help/bases/views
+
+## Design Skills / UI Review
+
+- OpenClaw Anthropic Frontend Design Skill: https://github.com/openclaw/skills/blob/main/skills/qrucio/anthropic-frontend-design/SKILL.md
+- Microsoft Frontend Design Review Skill: https://github.com/microsoft/skills/blob/main/.github/skills/frontend-design-review/SKILL.md
+- Ilm-Alan Frontend Design Skill: https://github.com/Ilm-Alan/frontend-design
+- Codex Skill Registry Frontend Design: https://skillregistry.dev/skills/design/frontend-design
+- UI/UX Pro Max Skill: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/.claude/skills/ui-ux-pro-max/SKILL.md
 - Maps of Content Überblick: https://www.dsebastien.net/2022-05-15-maps-of-content/
 
 ## Learning, Decision Science, Human Factors
