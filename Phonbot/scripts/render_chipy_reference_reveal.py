@@ -17,7 +17,7 @@ TRIPTYCH = Path(r"C:\Users\pc105\Downloads\ChatGPT Image 10. Mai 2026, 10_05_30.
 HERO = Path(r"C:\Users\pc105\Downloads\ChatGPT Image 10. Mai 2026, 10_05_04.png")
 OUT_DIR = Path(r"C:\Users\pc105\Obsidian\Phonbot\assets\video")
 FRAME_DIR = Path(r"C:\Users\pc105\AppData\Local\Temp\chipy-reference-reveal-frames")
-OUT_FILE = OUT_DIR / "chipy-reference-reveal-v3.mp4"
+OUT_FILE = OUT_DIR / "chipy-reference-reveal-v8.mp4"
 
 ORANGE = (249, 115, 22)
 CYAN = (6, 182, 212)
@@ -91,6 +91,19 @@ def resize_sprite(sprite: Image.Image, scale: float, sx: float = 1.0) -> Image.I
     return sprite.resize((w, h), Image.Resampling.LANCZOS)
 
 
+def intersect_alpha(sprite: Image.Image, polygons: list[list[tuple[int, int]]], feather: int = 2) -> Image.Image:
+    mask = Image.new("L", sprite.size, 0)
+    d = ImageDraw.Draw(mask)
+    for polygon in polygons:
+        d.polygon(polygon, fill=255)
+    if feather > 0:
+        mask = mask.filter(ImageFilter.GaussianBlur(feather))
+    alpha = Image.composite(sprite.getchannel("A"), Image.new("L", sprite.size, 0), mask)
+    out = sprite.copy()
+    out.putalpha(alpha)
+    return out
+
+
 def paste_center(base: Image.Image, sprite: Image.Image, cx: float, cy: float, opacity: float = 1.0, glow: bool = True) -> None:
     if opacity <= 0:
         return
@@ -110,12 +123,16 @@ def paste_center(base: Image.Image, sprite: Image.Image, cx: float, cy: float, o
 
 def make_background() -> Image.Image:
     bg = Image.new("RGBA", (W, H), (1, 2, 4, 255))
-    d = ImageDraw.Draw(bg, "RGBA")
+    overlay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(overlay, "RGBA")
     for r in range(850, 80, -55):
         d.ellipse((W / 2 - r, H / 2 - r, W / 2 + r, H / 2 + r), outline=(13, 31, 35, 12), width=2)
-    d.ellipse((230, 565, 705, 760), fill=(249, 115, 22, 58))
-    d.ellipse((585, 565, 1060, 760), fill=(6, 182, 212, 55))
-    d.rectangle((0, 0, W, H), fill=(0, 0, 0, 35))
+    d.ellipse((260, 590, 655, 760), fill=(249, 115, 22, 30))
+    d.ellipse((625, 590, 1020, 760), fill=(6, 182, 212, 28))
+    overlay = overlay.filter(ImageFilter.GaussianBlur(16))
+    bg.alpha_composite(overlay)
+    bg.alpha_composite(Image.new("RGBA", (W, H), (0, 0, 0, 35)))
+    bg.putalpha(255)
     return bg
 
 
@@ -126,8 +143,8 @@ def prep_sprites() -> dict[str, Image.Image]:
     # Left panel of the triptych is the cleanest no-props body reference.
     body = make_sprite(
         trip,
-        (42, 288, 345, 982),
-        polygon=[(153, 40), (32, 140), (20, 360), (140, 512), (30, 650), (154, 690), (276, 650), (164, 512), (287, 360), (274, 140)],
+        (42, 315, 345, 890),
+        polygon=[(153, 13), (32, 113), (20, 333), (140, 485), (72, 568), (235, 568), (164, 485), (287, 333), (274, 113)],
         luma_low=5,
         luma_high=82,
         contrast=1.08,
@@ -142,21 +159,43 @@ def prep_sprites() -> dict[str, Image.Image]:
         brightness=1.08,
     )
     phone = make_sprite(
-        hero,
-        (210, 500, 455, 935),
+        trip,
+        (835, 420, 1038, 830),
         luma_low=6,
         luma_high=82,
         contrast=1.12,
         brightness=1.04,
     )
+    phone = intersect_alpha(
+        phone,
+        [
+            # Full receiver arc and both handset ends.
+            [(0, 82), (35, 70), (88, 72), (122, 112), (130, 175), (120, 238), (157, 318), (156, 406), (42, 406), (0, 275)],
+            # Hand around the middle grip; keep the nice crystal fingers, not the body behind it.
+            [(20, 145), (118, 130), (151, 184), (144, 266), (56, 285), (4, 236)],
+        ],
+        feather=3,
+    )
+
     calendar = make_sprite(
-        hero,
-        (720, 505, 1068, 902),
+        trip,
+        (1040, 495, 1248, 820),
         luma_low=6,
         luma_high=82,
         contrast=1.1,
         brightness=1.04,
     )
+    calendar = intersect_alpha(
+        calendar,
+        [
+            # Calendar card including rings.
+            [(28, 36), (174, 54), (205, 105), (188, 252), (42, 250), (14, 205), (16, 90)],
+            # Holding hand on the lower right.
+            [(113, 167), (208, 158), (208, 281), (151, 318), (78, 258)],
+        ],
+        feather=3,
+    )
+
     return {"body": body, "hair": hair, "phone": phone, "calendar": calendar}
 
 
@@ -187,10 +226,10 @@ def render_frame(i: int) -> Image.Image:
     theta = math.pi * 2.05 * spin
     sx = mix(0.22 + 0.78 * abs(math.cos(theta)), 1.0, lock)
     yrot_shift = math.sin(theta) * 28 * (1 - lock)
-    body_scale = 0.83 + 0.025 * math.sin(t * 1.7)
+    body_scale = 0.94 + 0.025 * math.sin(t * 1.7)
     body = resize_sprite(SPRITES["body"], body_scale, sx)
     body_x = W * 0.5 + yrot_shift
-    body_y = H * 0.535
+    body_y = H * 0.555
     paste_center(frame, body, body_x, body_y, intro, glow=True)
 
     # Thin side edge during the most compressed turn makes the faux rotation read cleaner.
@@ -205,29 +244,30 @@ def render_frame(i: int) -> Image.Image:
 
     phone_p = back((t - 3.05) / 0.78)
     if phone_p > 0:
-        s = resize_sprite(SPRITES["phone"], mix(0.43, 0.53, clamp(phone_p)))
-        x = mix(-100, W * 0.335, clamp(phone_p))
-        y = mix(H * 0.70, H * 0.535, clamp(phone_p))
+        s = resize_sprite(SPRITES["phone"], mix(0.55, 0.72, clamp(phone_p)))
+        x = mix(-100, W * 0.35, clamp(phone_p))
+        y = mix(H * 0.70, H * 0.50, clamp(phone_p))
         paste_center(frame, s, x, y, clamp(phone_p), glow=True)
 
     cal_p = back((t - 3.28) / 0.82)
     if cal_p > 0:
-        s = resize_sprite(SPRITES["calendar"], mix(0.37, 0.49, clamp(cal_p)))
-        x = mix(W + 140, W * 0.715, clamp(cal_p))
-        y = mix(H * 0.73, H * 0.535, clamp(cal_p))
+        s = resize_sprite(SPRITES["calendar"], mix(0.74, 0.96, clamp(cal_p)))
+        x = mix(W + 140, W * 0.70, clamp(cal_p))
+        y = mix(H * 0.73, H * 0.50, clamp(cal_p))
         paste_center(frame, s, x, y, clamp(cal_p), glow=True)
 
     hair_p = expo((t - 4.75) / 0.72)
     if hair_p > 0:
         s = resize_sprite(SPRITES["hair"], 0.93 * clamp(hair_p))
         x = W * 0.505
-        y = mix(H * 0.24, H * 0.172, clamp(hair_p))
+        y = mix(H * 0.24, H * 0.155, clamp(hair_p))
         paste_center(frame, s, x, y, clamp(hair_p), glow=True)
 
     draw_light_sweep(frame, t)
 
-    d = ImageDraw.Draw(frame, "RGBA")
-    d.rectangle((0, 0, W, H), fill=(0, 0, 0, int(90 * (1 - intro))))
+    fade_alpha = int(90 * (1 - intro))
+    if fade_alpha > 0:
+        frame.alpha_composite(Image.new("RGBA", (W, H), (0, 0, 0, fade_alpha)))
     return frame.convert("RGB")
 
 
