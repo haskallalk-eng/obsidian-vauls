@@ -37,9 +37,10 @@ Aus `codex mcp list`:
 - `context7`: `npx -y @upstash/context7-mcp@latest`
 - `remotion`: `npx -y @remotion/mcp@latest`
 - `motion-studio`: `npx -y https://api.motion.dev/registry.tgz?package=motion-studio-mcp&version=latest`
-- `photoshop`: `npx -y @alisaitteke/photoshop-mcp@latest`
 
 Hinweis: Neue MCPs/Skills werden in einer laufenden Codex-Session eventuell erst nach Restart voll sichtbar.
+
+Kostenregel: Keine Abo-abhaengigen Design-MCPs global installieren. Primaer nutzen: vorhandenes `imagegen`, lokale Python/OpenCV/Pillow-Skripte, Browser/Playwright, Figma nur wenn bereits verbunden, Remotion/Motion fuer Code-Animationen.
 
 ## Einsatzmatrix
 
@@ -59,11 +60,14 @@ Hinweis: Neue MCPs/Skills werden in einer laufenden Codex-Session eventuell erst
 - Remotion MCP ist offiziell, installiert per `@remotion/mcp@latest`, und dient als Doku-/Kontextserver fuer programmatische Videos: https://www.remotion.dev/docs/ai/mcp
 - Motion Studio MCP ist offiziell und gibt Zugriff auf aktuelle Motion-Doku, Beispiele und Animation-Kontext; Motion+ kann fuer volle Features noetig sein: https://motion.dev/docs/studio-ai-context
 - Context7 liefert aktuelle Library-Doku, weist aber selbst darauf hin, dass Projektinhalte community-bezogen geprueft werden muessen: https://github.com/upstash/context7
-- Photoshop MCP ist inoffiziell/community. Installiert ist `@alisaitteke/photoshop-mcp`; laut Registry/Directory braucht es lokal installiertes Adobe Photoshop und steuert Photoshop per macOS AppleScript oder Windows COM. Nur fuer lokale Design-/Masking-Jobs nutzen, nicht fuer sensible Kundendaten.
+- Photoshop MCP wurde wieder entfernt, weil er lokal installiertes Adobe Photoshop voraussetzt und damit nicht zur "nur bestehendes Codex/OpenAI-Abo"-Regel passt.
 
 ## Bewusst nicht global installiert
 
 - Blender MCP: stark fuer 3D, aber fuehrt lokalen Blender/Python-Code aus. Nur isoliert in einem Pilotprojekt.
+- Photoshop MCP: braucht Adobe Photoshop lokal und ist deshalb nicht Teil des Standard-Stacks.
+- ComfyUI MCP: Open Source, aber braucht lokalen ComfyUI-Server/GPU-Setup; erst installieren, wenn bewusst ein lokales Modell-Studio aufgebaut wird.
+- Photopea MCP: potenziell kostenlos/browserbasiert, aber nicht noetig fuer sichere Standardarbeit; nur bei konkretem Editierbedarf testen.
 - Three.js Devtools MCP: sinnvoll bei echter Three.js/R3F-Szene, aber projektbezogen installieren.
 - Framer MCP Plugin: nuetzlich fuer Framer, aber Marketplace-/Tunnel-Vertrauen vorher pruefen.
 - Scenario/Invideo: Cloud-Asset/Video-Generatoren, erst Datenschutz/IP/Kosten pruefen.
